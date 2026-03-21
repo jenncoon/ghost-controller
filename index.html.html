@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operation: Design Brief, NISOD 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:wght@700;900&family=JetBrains+Mono:wght@500;600&display=swap');
+
+:root {
+  --navy:      #012a55;
+  --navy-mid:  #0d3d6b;
+  --navy-lt:   #1a5490;
+  --teal:      #2a8fa8;
+  --teal-lt:   #4ab5cc;
+  --teal-bg:   #e8f5f9;
+  --purple:    #7c70a0;
+  --purple-lt: #a89cc8;
+  --purple-bg: #f0edf8;
+  --tan:       #cbb29e;
+  --tan-lt:    #e8ddd4;
+  --tan-bg:    #faf7f4;
+  --cream:     #fffdf9;
+  --white:     #ffffff;
+  --gold:      #d4a017;
+  --gold-lt:   #f0c040;
+  --ink:       #1a2535;
+  --ink2:      #2d3f55;
+  --muted:     #5a6b7e;
+  --muted2:    #8a9aaa;
+  --border:    #d8e2ec;
+  --border2:   #e8eef4;
+  --ok-bg:     #edfaf2;
+  --ok:        #1a7a40;
+  --err-bg:    #fdf0f0;
+  --err:       #c0392b;
+  --f-head:    'Playfair Display', Georgia, serif;
+  --f-body:    'Nunito', system-ui, sans-serif;
+  --f-mono:    'JetBrains Mono', 'Courier New', monospace;
+  --r:         10px;
+  --r-sm:      6px;
+  --shadow:    0 2px 12px rgba(1,42,85,.10);
+  --shadow-lg: 0 8px 32px rgba(1,42,85,.14);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 18px; scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: var(--f-body); line-height: 1.65; -webkit-font-smoothing: antialiased; }
+
+.skip-link { position: absolute; top: -100px; left: 16px; background: var(--navy); color: #fff; font-family: var(--f-mono); font-size: .75rem; padding: 10px 16px; border-radius: var(--r-sm); z-index: 9999; text-decoration: none; transition: top .2s; }
+.skip-link:focus { top: 16px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* SCREENS */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* COVER */
+#screen-cover { min-height: 100vh; background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 50%, #0a4a72 100%); display: none; flex-direction: column; align-items: center; justify-content: center; padding: 32px 16px; position: relative; overflow: hidden; }
+#screen-cover.active { display: flex; }
+#screen-cover::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle, rgba(255,255,255,.5) 1px, transparent 1px), radial-gradient(circle, rgba(255,255,255,.3) 1px, transparent 1px); background-size: 60px 60px, 100px 100px; background-position: 0 0, 30px 30px; opacity: .1; pointer-events: none; }
+#screen-cover::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--teal), var(--purple), var(--tan)); }
+
+.cover-card { background: var(--white); border-radius: 16px; max-width: 520px; width: 100%; padding: 40px 36px 36px; box-shadow: var(--shadow-lg); animation: slideUp .6s cubic-bezier(.16,1,.3,1) both; position: relative; overflow: hidden; }
+.cover-card::before { content: ''; position: absolute; top: 0; right: 0; width: 120px; height: 120px; background: linear-gradient(135deg, var(--purple-bg) 0%, transparent 70%); border-radius: 0 16px 0 0; }
+
+.dot-strip { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; }
+.d1 { background: var(--teal); }
+.d2 { background: var(--purple); }
+.d3 { background: var(--tan); }
+.conf-lbl { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+
+.cover-title { font-family: var(--f-head); font-size: clamp(1.9rem, 7vw, 2.8rem); font-weight: 900; color: var(--navy); line-height: 1.1; margin-bottom: 6px; }
+.cover-title em { color: var(--teal); font-style: normal; }
+.cover-sub { font-size: 1rem; color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+
+.stat-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.pill { background: var(--teal-bg); border: 1.5px solid var(--teal-lt); border-radius: 100px; padding: 7px 14px; display: flex; align-items: center; gap: 7px; }
+.pill .pn { font-family: var(--f-head); font-size: 1.1rem; font-weight: 900; color: var(--navy); }
+.pill .pl { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+
+.brief-callout { background: var(--purple-bg); border-left: 4px solid var(--purple); border-radius: 0 var(--r-sm) var(--r-sm) 0; padding: 14px 18px; margin-bottom: 24px; font-size: .95rem; color: var(--ink2); line-height: 1.6; }
+
+.name-group { margin-bottom: 20px; }
+.name-group label { display: block; font-family: var(--f-mono); font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--navy); margin-bottom: 8px; }
+.name-group input { width: 100%; background: var(--cream); border: 2px solid var(--border); border-radius: var(--r-sm); color: var(--ink); font-family: var(--f-body); font-size: 1.1rem; padding: 14px 16px; transition: border-color .15s; -webkit-appearance: none; }
+.name-group input:focus { outline: 3px solid var(--teal); outline-offset: 2px; border-color: var(--teal); }
+.name-group input::placeholder { color: var(--muted2); }
+.hint { font-family: var(--f-mono); font-size: .62rem; color: var(--muted2); margin-top: 5px; letter-spacing: .04em; }
+
+.btn-primary { display: block; width: 100%; background: linear-gradient(135deg, var(--teal) 0%, var(--navy-lt) 100%); color: #fff; font-family: var(--f-body); font-size: 1rem; font-weight: 800; letter-spacing: .04em; padding: 18px 24px; border: none; border-radius: var(--r-sm); cursor: pointer; transition: all .15s; min-height: 56px; text-align: center; box-shadow: 0 4px 14px rgba(42,143,168,.35); }
+.btn-primary:hover, .btn-primary:focus-visible { filter: brightness(1.08); transform: translateY(-2px); }
+.btn-primary:focus-visible { outline: 3px solid var(--gold-lt); outline-offset: 3px; }
+.btn-primary:active { transform: translateY(0); }
+.cover-foot { margin-top: 20px; font-family: var(--f-mono); font-size: .62rem; color: rgba(255,255,255,.45); text-align: center; letter-spacing: .05em; }
+
+/* HUD */
+.hud { position: sticky; top: 0; z-index: 200; background: var(--navy); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.hud-left { font-family: var(--f-mono); font-size: .62rem; font-weight: 600; letter-spacing: .1em; color: var(--teal-lt); text-transform: uppercase; flex-shrink: 0; }
+.hud-pips { display: flex; gap: 6px; flex: 1; justify-content: center; }
+.pip { height: 6px; flex: 1; max-width: 52px; background: rgba(255,255,255,.15); border-radius: 99px; transition: background .4s; }
+.pip.done { background: var(--teal-lt); }
+.pip.now  { background: var(--gold-lt); animation: glow 1.6s ease infinite; }
+@keyframes glow { 0%,100%{opacity:1} 50%{opacity:.5} }
+.hud-right { font-family: var(--f-mono); font-size: .62rem; color: rgba(255,255,255,.5); flex-shrink: 0; letter-spacing: .05em; }
+
+/* FAC BANNER */
+.fac-banner { background: linear-gradient(90deg, var(--purple), var(--purple-lt)); padding: 13px 20px; display: flex; align-items: center; gap: 12px; }
+.fac-text { font-size: .88rem; color: #fff; font-weight: 700; line-height: 1.4; }
+.fac-text span { font-weight: 400; opacity: .88; }
+
+/* GAME */
+#screen-game { display: none; }
+#screen-game.active { display: block; }
+.station { display: none; }
+.station.active { display: block; animation: slideUp .4s ease both; }
+
+.stn-body { max-width: 660px; margin: 0 auto; padding: 36px 16px 80px; }
+
+.stn-eye { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; letter-spacing: .18em; color: var(--purple); text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+.stn-eye::after { content: ''; flex: 1; max-width: 60px; height: 2px; background: linear-gradient(90deg, var(--purple-lt), transparent); border-radius: 2px; }
+.stn-title { font-family: var(--f-head); font-size: clamp(1.8rem, 6vw, 2.5rem); font-weight: 900; color: var(--navy); line-height: 1.1; margin-bottom: 28px; }
+.stn-title em { color: var(--teal); font-style: normal; }
+
+/* STAT CARDS */
+.stat-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 24px; }
+.stat-card { background: var(--navy); border-radius: var(--r); padding: 20px 16px; text-align: center; }
+.stat-card .big { font-family: var(--f-head); font-size: 2.8rem; font-weight: 900; color: var(--gold-lt); line-height: 1; display: block; margin-bottom: 6px; }
+.stat-card .desc { font-family: var(--f-mono); font-size: .65rem; color: rgba(255,255,255,.65); line-height: 1.45; text-transform: uppercase; }
+.stat-card .src { font-size: .55rem; color: rgba(255,255,255,.35); margin-top: 4px; display: block; }
+
+/* ICON ROW */
+.icon-row { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+.icon-card { flex: 1; min-width: 140px; background: var(--white); border: 2px solid var(--border2); border-radius: var(--r); padding: 18px 16px; box-shadow: var(--shadow); }
+.icon-card .ii { font-size: 2rem; display: block; margin-bottom: 10px; }
+.icon-card .ih { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; letter-spacing: .1em; color: var(--purple); text-transform: uppercase; margin-bottom: 5px; }
+.icon-card .ib { font-size: .9rem; color: var(--ink2); line-height: 1.5; }
+
+/* DOC CARD */
+.doc-card { background: var(--white); border: 2px solid var(--border); border-radius: var(--r); margin-bottom: 20px; box-shadow: var(--shadow); overflow: hidden; }
+.doc-hd { background: var(--navy); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.doc-lbl { font-family: var(--f-mono); font-size: .62rem; letter-spacing: .08em; color: rgba(255,255,255,.65); text-transform: uppercase; }
+.doc-tag { font-family: var(--f-mono); font-size: .58rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 10px; border-radius: 99px; white-space: nowrap; }
+.doc-tag.tl { background: var(--teal-bg); color: var(--teal); }
+.doc-tag.pu { background: var(--purple-bg); color: var(--purple); }
+.doc-tag.ta { background: var(--tan-bg); color: #7a5a3a; }
+.doc-bd { padding: 22px; }
+.doc-bd p { font-size: 1rem; color: var(--ink); line-height: 1.7; margin-bottom: 14px; }
+.doc-bd p:last-child { margin-bottom: 0; }
+.hl { background: linear-gradient(120deg, rgba(42,143,168,.18), rgba(42,143,168,.12)); padding: 1px 4px; border-radius: 3px; font-weight: 700; }
+
+/* ACCORDION QUOTES */
+.accordion { border: 2px solid var(--border); border-radius: var(--r); margin-bottom: 14px; overflow: hidden; box-shadow: var(--shadow); }
+.acc-btn { width: 100%; background: var(--white); border: none; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; font-family: var(--f-body); font-size: 1rem; font-weight: 800; color: var(--navy); text-align: left; min-height: 56px; transition: background .15s; }
+.acc-btn:hover { background: var(--teal-bg); }
+.acc-btn:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+.acc-label { display: flex; align-items: center; gap: 10px; }
+.acc-icon { font-size: 1.2rem; }
+.acc-chevron { font-size: 1rem; transition: transform .25s; color: var(--muted); flex-shrink: 0; }
+.acc-btn[aria-expanded="true"] .acc-chevron { transform: rotate(180deg); }
+.acc-panel { display: none; background: var(--tan-bg); padding: 0 20px 16px; }
+.acc-panel.open { display: block; animation: slideUp .25s ease both; }
+.quote-card { border-left: 4px solid var(--tan); padding: 16px 18px 12px; margin-top: 14px; background: var(--white); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.quote-card blockquote { font-size: 1rem; font-style: italic; color: var(--ink); line-height: 1.7; margin-bottom: 8px; }
+.quote-card cite { font-family: var(--f-mono); font-size: .62rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-style: normal; }
+
+/* DECISION CARDS */
+.decision-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.dec-card { border-radius: var(--r); padding: 20px; display: flex; gap: 16px; align-items: flex-start; box-shadow: var(--shadow); }
+.dec-card:nth-child(1) { background: var(--teal-bg); border: 2px solid var(--teal-lt); }
+.dec-card:nth-child(2) { background: var(--purple-bg); border: 2px solid var(--purple-lt); }
+.dec-card:nth-child(3) { background: var(--tan-bg); border: 2px solid var(--tan); }
+.dec-n { font-family: var(--f-head); font-size: 2.4rem; font-weight: 900; line-height: 1; flex-shrink: 0; width: 40px; text-align: center; }
+.dec-card:nth-child(1) .dec-n { color: var(--teal); }
+.dec-card:nth-child(2) .dec-n { color: var(--purple); }
+.dec-card:nth-child(3) .dec-n { color: #a07040; }
+.dec-q { font-family: var(--f-head); font-size: 1.1rem; font-weight: 700; color: var(--navy); line-height: 1.25; margin-bottom: 6px; }
+.dec-s { font-size: .9rem; color: var(--ink2); line-height: 1.55; }
+
+/* QUESTION BLOCK */
+.q-block { background: var(--white); border: 2px solid var(--border); border-radius: var(--r); padding: 4px 20px 24px; margin-bottom: 24px; box-shadow: var(--shadow); overflow: hidden; }
+.q-stripe { height: 4px; background: linear-gradient(90deg, var(--teal), var(--purple)); margin: 0 -20px 20px; }
+.q-eye { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; letter-spacing: .15em; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; }
+.q-text { font-family: var(--f-head); font-size: 1.2rem; font-weight: 700; color: var(--navy); line-height: 1.35; margin-bottom: 18px; }
+.attempts-left { font-family: var(--f-mono); font-size: .7rem; color: var(--muted); letter-spacing: .05em; margin-bottom: 12px; }
+.opts { display: flex; flex-direction: column; gap: 8px; }
+.opt { background: var(--cream); border: 2px solid var(--border); border-radius: var(--r-sm); padding: 15px 16px; display: flex; align-items: flex-start; gap: 12px; cursor: pointer; transition: all .15s; font-size: 1rem; color: var(--ink); text-align: left; font-family: var(--f-body); line-height: 1.45; min-height: 56px; width: 100%; font-weight: 600; }
+.opt:hover:not(:disabled) { border-color: var(--teal); background: var(--teal-bg); transform: translateX(4px); }
+.opt:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+.opt-l { font-family: var(--f-mono); font-size: .72rem; font-weight: 700; color: var(--muted2); flex-shrink: 0; width: 24px; height: 24px; background: var(--border2); border-radius: 4px; display: flex; align-items: center; justify-content: center; padding-top: 1px; }
+.opt.correct { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); pointer-events: none; }
+.opt.correct .opt-l { background: var(--ok); color: #fff; }
+.opt.wrong { border-color: var(--err); background: var(--err-bg); color: var(--err); pointer-events: none; }
+.opt.wrong .opt-l { background: var(--err); color: #fff; }
+.opt.dimmed { opacity: .35; pointer-events: none; }
+.opt:disabled { cursor: default; }
+.feedback { display: none; margin-top: 14px; padding: 14px 16px; border-radius: var(--r-sm); font-size: .95rem; line-height: 1.6; font-weight: 600; }
+.feedback.show { display: block; }
+.feedback.ok { background: var(--ok-bg); border-left: 4px solid var(--ok); color: #145c2e; }
+.feedback.miss { background: var(--err-bg); border-left: 4px solid var(--err); color: #7a1f1f; }
+.hint-btn { background: none; border: none; font-family: var(--f-mono); font-size: .72rem; font-weight: 600; color: var(--teal); cursor: pointer; padding: 10px 0 0; text-decoration: underline; text-align: left; }
+.hint-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 3px; }
+
+/* TEXT FIELDS */
+.field-group { margin-bottom: 18px; }
+.field-group label { display: block; font-family: var(--f-mono); font-size: .68rem; font-weight: 600; letter-spacing: .1em; color: var(--navy); text-transform: uppercase; margin-bottom: 7px; }
+.field-group textarea { width: 100%; background: var(--cream); border: 2px solid var(--border); border-radius: var(--r-sm); color: var(--ink); font-family: var(--f-body); font-size: 1rem; padding: 14px; resize: vertical; min-height: 90px; line-height: 1.6; transition: border-color .15s; -webkit-appearance: none; }
+.field-group textarea:focus { outline: 3px solid var(--teal); outline-offset: 2px; border-color: var(--teal); }
+.field-group textarea::placeholder { color: var(--muted2); }
+.char-c { font-family: var(--f-mono); font-size: .6rem; color: var(--muted2); text-align: right; margin-top: 4px; letter-spacing: .04em; }
+
+/* FOOTER */
+.stn-footer { margin-top: 32px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.lock-hint { font-family: var(--f-mono); font-size: .7rem; color: var(--muted); letter-spacing: .05em; transition: opacity .3s; display: flex; align-items: center; gap: 7px; }
+.lock-hint.hidden { opacity: 0; pointer-events: none; }
+.btn-adv { background: var(--navy); color: #fff; font-family: var(--f-body); font-size: .95rem; font-weight: 800; padding: 16px 28px; border: none; border-radius: var(--r-sm); cursor: pointer; transition: all .15s; opacity: 0; pointer-events: none; min-height: 52px; box-shadow: 0 4px 16px rgba(1,42,85,.25); }
+.btn-adv.on { opacity: 1; pointer-events: all; }
+.btn-adv:hover { background: var(--navy-lt); transform: translateY(-2px); }
+.btn-adv:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
+.btn-adv:active { transform: translateY(0); }
+
+/* COMPLETION */
+#screen-complete { background: linear-gradient(160deg, var(--navy) 0%, #0d3d6b 100%); min-height: 100vh; display: none; flex-direction: column; align-items: center; padding: 48px 16px 64px; text-align: center; }
+#screen-complete.active { display: flex; }
+#screen-complete::after { content: ''; position: fixed; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, var(--teal), var(--purple), var(--tan)); }
+.badge-wrap { margin-bottom: 28px; animation: badgePop .7s cubic-bezier(.34,1.56,.64,1) .1s both; }
+canvas#badgeCanvas { display: block; border-radius: 50%; box-shadow: 0 0 0 5px rgba(255,255,255,.15), 0 0 50px rgba(74,181,204,.4); }
+.comp-title { font-family: var(--f-head); font-size: clamp(1.8rem,7vw,2.8rem); font-weight: 900; color: #fff; margin-bottom: 8px; animation: slideUp .5s ease .25s both; }
+.comp-title em { color: var(--gold-lt); font-style: normal; }
+.comp-sub { font-size: 1rem; color: rgba(255,255,255,.72); max-width: 420px; line-height: 1.65; margin-bottom: 32px; animation: slideUp .5s ease .35s both; }
+.dl-group { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; animation: slideUp .5s ease .45s both; }
+.btn-dl { display: inline-flex; align-items: center; gap: 9px; font-family: var(--f-body); font-size: .9rem; font-weight: 800; padding: 16px 24px; border: none; border-radius: var(--r-sm); cursor: pointer; transition: all .15s; min-height: 52px; }
+.btn-dl.badge { background: var(--gold-lt); color: var(--navy); }
+.btn-dl.card  { background: var(--white); color: var(--navy); }
+.btn-dl:hover, .btn-dl:focus-visible { filter: brightness(.96); transform: translateY(-2px); }
+.btn-dl.badge:hover, .btn-dl.badge:focus-visible { filter: brightness(1.07); }
+.btn-dl:focus-visible { outline: 3px solid var(--gold-lt); outline-offset: 3px; }
+.btn-dl:active { transform: translateY(0); }
+.resources { width: 100%; max-width: 560px; animation: slideUp .5s ease .55s both; }
+.res-head { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; letter-spacing: .16em; color: var(--teal-lt); text-transform: uppercase; text-align: left; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
+.res-head::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.15); }
+.res-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 20px; }
+.res-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: var(--r); padding: 16px 14px; text-align: left; }
+.res-card .ri { font-size: 1.6rem; display: block; margin-bottom: 8px; }
+.res-card .rt { font-family: var(--f-mono); font-size: .68rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
+.res-card .rd { font-size: .78rem; color: rgba(255,255,255,.55); line-height: 1.4; }
+.contact-strip { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-top: 3px solid var(--teal-lt); border-radius: var(--r); padding: 22px 20px; }
+.contact-strip p { font-size: .95rem; color: rgba(255,255,255,.7); margin-bottom: 10px; line-height: 1.6; }
+.contact-strip a { font-family: var(--f-mono); font-size: .9rem; color: var(--gold-lt); text-decoration: none; display: block; margin-bottom: 4px; }
+.contact-strip a:hover { color: #fff; text-decoration: underline; }
+.contact-strip small { font-family: var(--f-mono); font-size: .62rem; color: rgba(255,255,255,.35); letter-spacing: .05em; }
+
+canvas#reflCard { display: none; }
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes badgePop { from { opacity: 0; transform: scale(.3) rotate(-20deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
+@media (max-width: 440px) { .res-grid { grid-template-columns: 1fr; } .dl-group { flex-direction: column; align-items: center; } .btn-dl { width: 100%; justify-content: center; } }
+@media (forced-colors: active) { .opt, .btn-primary, .btn-adv, .btn-dl { border: 2px solid ButtonText; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<main id="main">
+
+<!-- COVER -->
+<div id="screen-cover" class="screen active" role="main" aria-label="Mission briefing">
+  <div class="cover-card">
+    <div class="dot-strip" aria-hidden="true">
+      <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+      <span class="conf-lbl">NISOD 2026, Austin TX, May 23-26</span>
+    </div>
+    <h1 class="cover-title">From Review Sheets<br>to <em>Crime Scene</em></h1>
+    <p class="cover-sub">An interactive field exercise in escape room design</p>
+    <div class="stat-pills" role="list" aria-label="Session overview">
+      <div class="pill" role="listitem"><span class="pn">4</span><span class="pl">Stations</span></div>
+      <div class="pill" role="listitem"><span class="pn">~20</span><span class="pl">Minutes</span></div>
+      <div class="pill" role="listitem"><span class="pn">1</span><span class="pl">Badge</span></div>
+      <div class="pill" role="listitem"><span class="pn">1</span><span class="pl">Card</span></div>
+    </div>
+    <div class="brief-callout" role="note">
+      You have been recruited to investigate a pedagogical failure. Students review for exams and retain nothing. Your mission: analyze the evidence, apply the framework, and design your own game. Your facilitator will guide the room through each station together!
+    </div>
+    <div class="name-group">
+      <label for="agentName">Your name, for your badge and reflection card</label>
+      <input type="text" id="agentName" autocomplete="given-name" placeholder="Enter your first name" maxlength="40" aria-required="true" aria-describedby="name-hint">
+      <p id="name-hint" class="hint">Appears on your personalized downloadable badge and reflection card</p>
+    </div>
+    <button class="btn-primary" onclick="startGame()">Begin Briefing</button>
+  </div>
+  <p class="cover-foot">Jennifer Coon, CIA, CFE, Professor of Accounting, Tyler Junior College</p>
+</div>
+
+
+<!-- GAME -->
+<div id="screen-game" class="screen" aria-label="Field exercise">
+
+  <div class="hud" role="navigation" aria-label="Progress">
+    <div class="hud-left" aria-hidden="true">Op: Design Brief</div>
+    <div class="hud-pips" role="list" aria-label="Stations">
+      <div class="pip now" id="pip0" role="listitem" aria-label="Station 1, current"></div>
+      <div class="pip"     id="pip1" role="listitem" aria-label="Station 2"></div>
+      <div class="pip"     id="pip2" role="listitem" aria-label="Station 3"></div>
+      <div class="pip"     id="pip3" role="listitem" aria-label="Station 4"></div>
+    </div>
+    <div class="hud-right" id="hudLbl" aria-live="polite" aria-atomic="true">Station 1 / 4</div>
+  </div>
+
+  <div class="fac-banner" role="note">
+    <div class="fac-text">Facilitated Session <span>- Follow along on your device. Answer questions when your presenter prompts the room.</span></div>
+  </div>
+
+  <!-- STATION 1 -->
+  <section class="station active" id="st0" aria-labelledby="s0h">
+    <div class="stn-body">
+      <p class="stn-eye" aria-hidden="true">Station 01, Incident Report</p>
+      <h2 class="stn-title" id="s0h">The <em>Engagement</em> Gap</h2>
+
+      <div class="stat-cards" role="list" aria-label="Research statistics">
+        <div class="stat-card" role="listitem">
+          <span class="big" aria-label="20 percent">20%</span>
+          <span class="desc">of what students hear is retained</span>
+          <span class="src">Coram, 2005</span>
+        </div>
+        <div class="stat-card" role="listitem">
+          <span class="big" aria-label="95 percent">95%</span>
+          <span class="desc">of what they teach or explain to others is retained</span>
+          <span class="src">Coram, 2005</span>
+        </div>
+      </div>
+
+      <div class="icon-row" role="list" aria-label="What conventional review does and doesn't do">
+        <div class="icon-card" role="listitem">
+          <span class="ii" aria-hidden="true">&#x2705;</span>
+          <div class="ih">What review DOES</div>
+          <div class="ib">Confirms what students already know. Checks completion. Reduces uncertainty.</div>
+        </div>
+        <div class="icon-card" role="listitem">
+          <span class="ii" aria-hidden="true">&#x1F6AB;</span>
+          <div class="ih">What it STRUGGLES to do</div>
+          <div class="ib">Create pressure. Force peer negotiation. Ask students to reason before the stakes are real.</div>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <div class="doc-hd">
+          <span class="doc-lbl">Field Observation, Acct 2301, Spring 2025</span>
+          <span class="doc-tag tl">Field Report</span>
+        </div>
+        <div class="doc-bd">
+          <p>Students arrived at exam week having completed every publisher review assignment. SmartBook. Videos. Everything. On paper, they were prepared.</p>
+          <p>Then the exam happened, and they blanked on the accounting cycle. They got the mechanics but lost the logic the moment the question was worded differently.</p>
+          <p><span class="hl">The review existed. The thinking did not.</span></p>
+        </div>
+      </div>
+
+      <div class="q-block" role="group" aria-labelledby="q1lbl">
+        <div class="q-stripe" aria-hidden="true"></div>
+        <p class="q-eye" aria-hidden="true">Question 01 of 02</p>
+        <p class="q-text" id="q1lbl">Compared to a publisher review assignment, where does an escape room tend to have a clear advantage?</p>
+        <p class="attempts-left" id="att1" aria-live="polite">You have 2 attempts.</p>
+        <div class="opts" id="opts1" role="radiogroup" aria-labelledby="q1lbl">
+          <button class="opt" onclick="answerQ(1,'A')"><span class="opt-l" aria-hidden="true">A</span><span>Delivering content to more students at the same time</span></button>
+          <button class="opt" onclick="answerQ(1,'B')"><span class="opt-l" aria-hidden="true">B</span><span>Placing students under social pressure to reason through material before the grade</span></button>
+          <button class="opt" onclick="answerQ(1,'C')"><span class="opt-l" aria-hidden="true">C</span><span>Providing a lower-stakes grading option for struggling students</span></button>
+          <button class="opt" onclick="answerQ(1,'D')"><span class="opt-l" aria-hidden="true">D</span><span>Aligning more closely with publisher learning objectives</span></button>
+        </div>
+        <div class="feedback" id="q1fb" role="alert" aria-live="polite"></div>
+      </div>
+
+      <div class="stn-footer">
+        <p class="lock-hint" id="lock0" aria-live="polite">&#x1F512; Answer the question above to advance</p>
+        <button class="btn-adv" id="adv0" onclick="goNext(1)" aria-label="Advance to Station 2">Next Station</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATION 2 -->
+  <section class="station" id="st1" aria-labelledby="s1h">
+    <div class="stn-body">
+      <p class="stn-eye" aria-hidden="true">Station 02, Evidence Locker</p>
+      <h2 class="stn-title" id="s1h">Student <em>Testimony</em></h2>
+
+      <div class="stat-cards" role="list" aria-label="Pilot data">
+        <div class="stat-card" role="listitem">
+          <span class="big" aria-label="16 students">16</span>
+          <span class="desc">students in in-person pilot, plus dept. chair and dean, who both played</span>
+        </div>
+        <div class="stat-card" role="listitem">
+          <span class="big" aria-label="2 modalities">2</span>
+          <span class="desc">modalities tested, in-person pre-exam and async online post-exam</span>
+        </div>
+      </div>
+
+      <!-- Expandable in-person quotes -->
+      <div class="accordion" id="acc1">
+        <button class="acc-btn" aria-expanded="false" aria-controls="acc1panel" onclick="toggleAcc('acc1')">
+          <span class="acc-label"><span class="acc-icon" aria-hidden="true">&#x1F3EB;</span> In-Person Student Voices</span>
+          <span class="acc-chevron" aria-hidden="true">&#x25BE;</span>
+        </button>
+        <div class="acc-panel" id="acc1panel" role="region" aria-labelledby="acc1 .acc-btn">
+          <div class="quote-card">
+            <blockquote>"I liked how the review was interactive, a group activity where everyone has the chance to participate, giving those who maybe don't understand the subject a chance to understand it better."</blockquote>
+            <cite>In-person section student</cite>
+          </div>
+          <div class="quote-card">
+            <blockquote>"This strategy not only improved my learning experience but also made me feel better prepared for the exam, as it required careful evaluation and critical thinking before delivering any answers."</blockquote>
+            <cite>In-person section student</cite>
+          </div>
+          <div class="quote-card">
+            <blockquote>Department chair: "It was great, just the right amount of time. Students identified they needed to study more and did not understand the cycle as well as they thought."</blockquote>
+            <cite>Administrator observation</cite>
+          </div>
+          <div class="quote-card">
+            <blockquote>Dean: "It was awesome and engaging. I felt like I was dragging down my group."</blockquote>
+            <cite>Administrator observation</cite>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expandable online quotes -->
+      <div class="accordion" id="acc2">
+        <button class="acc-btn" aria-expanded="false" aria-controls="acc2panel" onclick="toggleAcc('acc2')">
+          <span class="acc-label"><span class="acc-icon" aria-hidden="true">&#x1F4BB;</span> Online Student Voices</span>
+          <span class="acc-chevron" aria-hidden="true">&#x25BE;</span>
+        </button>
+        <div class="acc-panel" id="acc2panel" role="region">
+          <div class="quote-card">
+            <blockquote>"The escape room made accounting seem more like a puzzle or game rather than just regular worksheets. Seeing how everything ties together gave me a better understanding of the overall picture."</blockquote>
+            <cite>Online section student</cite>
+          </div>
+          <div class="quote-card">
+            <blockquote>"It connected the dots on the cycle for me. It was just challenging enough to not be discouraging."</blockquote>
+            <cite>Online section student</cite>
+          </div>
+          <div class="quote-card">
+            <blockquote>"I enjoyed that it was more interactive than publisher assignments. Good for exam review."</blockquote>
+            <cite>Online section student</cite>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block" role="group" aria-labelledby="q2lbl" style="margin-top:20px">
+        <div class="q-stripe" aria-hidden="true"></div>
+        <p class="q-eye" aria-hidden="true">Question 02 of 02</p>
+        <p class="q-text" id="q2lbl">Based on the testimony, what is the primary mechanism by which the game produces learning?</p>
+        <p class="attempts-left" id="att2" aria-live="polite">You have 2 attempts.</p>
+        <div class="opts" id="opts2" role="radiogroup" aria-labelledby="q2lbl">
+          <button class="opt" onclick="answerQ(2,'A')"><span class="opt-l" aria-hidden="true">A</span><span>The game rewards correct answers more immediately than traditional methods</span></button>
+          <button class="opt" onclick="answerQ(2,'B')"><span class="opt-l" aria-hidden="true">B</span><span>The narrative framing reduces test anxiety by disguising review as entertainment</span></button>
+          <button class="opt" onclick="answerQ(2,'C')"><span class="opt-l" aria-hidden="true">C</span><span>Students must actively reason, collaborate, and honestly self-assess before the stakes are real</span></button>
+          <button class="opt" onclick="answerQ(2,'D')"><span class="opt-l" aria-hidden="true">D</span><span>The game covers more content per unit of time than conventional review</span></button>
+        </div>
+        <div class="feedback" id="q2fb" role="alert" aria-live="polite"></div>
+      </div>
+
+      <div class="stn-footer">
+        <p class="lock-hint" id="lock1" aria-live="polite">&#x1F512; Answer the question above to advance</p>
+        <button class="btn-adv" id="adv1" onclick="goNext(2)" aria-label="Advance to Station 3">Next Station</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATION 3 -->
+  <section class="station" id="st2" aria-labelledby="s2h">
+    <div class="stn-body">
+      <p class="stn-eye" aria-hidden="true">Station 03, Design Protocol</p>
+      <h2 class="stn-title" id="s2h">Your <em>Design Brief</em></h2>
+
+      <div class="doc-card">
+        <div class="doc-hd">
+          <span class="doc-lbl">Framework Document, The 3-Decision Rule</span>
+          <span class="doc-tag ta">Apply Now</span>
+        </div>
+        <div class="doc-bd">
+          <p>Every escape room that works pedagogically was built by answering three questions <strong>before a single question was written.</strong> Most attempts fail, or become trivia games with a timer, because people start with the questions instead of the design.</p>
+        </div>
+      </div>
+
+      <div class="decision-stack" role="list" aria-label="The 3 decisions">
+        <div class="dec-card" role="listitem">
+          <div class="dec-n" aria-hidden="true">1</div>
+          <div><div class="dec-q">What concept are you testing?</div><div class="dec-s">Pick <strong>one</strong> learning objective from one exam or assessment, not the whole unit. Focus is what makes it work.</div></div>
+        </div>
+        <div class="dec-card" role="listitem">
+          <div class="dec-n" aria-hidden="true">2</div>
+          <div><div class="dec-q">What does success look like in the room?</div><div class="dec-s">Name the win condition before you write a single question. "They crack the case." "They close the vault." Make it tangible.</div></div>
+        </div>
+        <div class="dec-card" role="listitem">
+          <div class="dec-n" aria-hidden="true">3</div>
+          <div><div class="dec-q">How does it work when the internet is down?</div><div class="dec-s">Design in-person first, using paper and printed stations. The online version follows naturally from a solid in-person design.</div></div>
+        </div>
+      </div>
+
+      <div class="q-block" role="group" aria-labelledby="s2flbl">
+        <div class="q-stripe" aria-hidden="true"></div>
+        <p class="q-eye" aria-hidden="true">Your Brief, Field Exercise</p>
+        <p class="q-text" id="s2flbl">Apply the 3 decisions to a course you actually teach. These answers become your reflection card.</p>
+
+        <div class="field-group">
+          <label for="b1">Decision 1, The one concept your room will test</label>
+          <textarea id="b1" placeholder="e.g. A single concept students consistently struggle with before your midterm or final" oninput="checkBrief()" aria-required="true"></textarea>
+        </div>
+        <div class="field-group">
+          <label for="b2">Decision 2, Your win condition (one sentence)</label>
+          <textarea id="b2" placeholder="e.g. Students are investigators who must solve the case before time runs out..." oninput="checkBrief()" style="min-height:76px" aria-required="true"></textarea>
+        </div>
+        <div class="field-group">
+          <label for="b3">Decision 3, Your in-person version (sketch 2 to 3 stations)</label>
+          <textarea id="b3" placeholder="e.g. Station 1: Identify the problem. Station 2: Apply the concept. Station 3: Defend the answer." oninput="checkBrief()" aria-required="true"></textarea>
+        </div>
+      </div>
+
+      <div class="stn-footer">
+        <p class="lock-hint" id="lock2" aria-live="polite">&#x1F512; Complete all three fields to advance</p>
+        <button class="btn-adv" id="adv2" onclick="goNext(3)" aria-label="Advance to Station 4">Next Station</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATION 4 -->
+  <section class="station" id="st3" aria-labelledby="s3h">
+    <div class="stn-body">
+      <p class="stn-eye" aria-hidden="true">Station 04, Case Debrief</p>
+      <h2 class="stn-title" id="s3h">Close the <em>Case</em></h2>
+
+      <div class="doc-card">
+        <div class="doc-hd">
+          <span class="doc-lbl">Debrief Protocol, Before File Closure</span>
+          <span class="doc-tag pu">Final Station</span>
+        </div>
+        <div class="doc-bd">
+          <p>Notice what happened in your experience here. You were given a problem, shown evidence, asked to apply a framework, and now you are reflecting before you see the outcome.</p>
+          <p><span class="hl">Engage, apply, reflect, then reveal. That is the structure your students need before every high-stakes assessment.</span></p>
+          <p>The friction you felt when you had to commit before advancing? That is the point. That is what passive review never creates.</p>
+        </div>
+      </div>
+
+      <div class="icon-row" role="list" aria-label="What you just did">
+        <div class="icon-card" role="listitem"><span class="ii" aria-hidden="true">&#x1F50D;</span><div class="ih">You analyzed</div><div class="ib">Evidence about why conventional review falls short</div></div>
+        <div class="icon-card" role="listitem"><span class="ii" aria-hidden="true">&#x1F6E0;&#xFE0F;</span><div class="ih">You applied</div><div class="ib">A design framework to a real course you teach</div></div>
+        <div class="icon-card" role="listitem"><span class="ii" aria-hidden="true">&#x26A1;</span><div class="ih">You felt it</div><div class="ib">The productive pressure of having to commit before advancing</div></div>
+      </div>
+
+      <div class="q-block" role="group" aria-labelledby="s3qlbl">
+        <div class="q-stripe" aria-hidden="true"></div>
+        <p class="q-eye" aria-hidden="true">Final Reflection, This goes on your card</p>
+        <p class="q-text" id="s3qlbl">What is the hardest part of your design brief, and what would it actually take to build it?</p>
+        <div class="field-group">
+          <label for="refl">Your reflection <span class="sr-only">, minimum 40 characters</span></label>
+          <textarea id="refl" placeholder="Think about the gap between 'I could do this' and 'I will do this.' What is standing in the way?" oninput="checkRefl()" style="min-height:130px" aria-required="true" aria-describedby="refl-count refl-fb"></textarea>
+          <p id="refl-count" class="char-c" aria-live="polite" aria-atomic="true">0 / 40 characters minimum</p>
+        </div>
+        <div class="feedback" id="refl-fb" role="alert" aria-live="polite"></div>
+      </div>
+
+      <div class="stn-footer">
+        <p class="lock-hint" id="lock3" aria-live="polite">&#x1F512; Complete your reflection to close the case</p>
+        <button class="btn-adv" id="adv3" onclick="showDone()">Close the Case</button>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /screen-game -->
+
+
+<!-- COMPLETION -->
+<div id="screen-complete" class="screen" role="main" aria-label="Mission complete">
+  <div class="badge-wrap">
+    <canvas id="badgeCanvas" width="200" height="200" role="img" aria-label="The Architect badge"></canvas>
+  </div>
+  <h2 class="comp-title">Badge Earned: <em>The Architect</em></h2>
+  <p class="comp-sub">You analyzed the evidence, applied the framework, and committed a design. You know how this game works, because you just played it.</p>
+  <div class="dl-group">
+    <button class="btn-dl badge" onclick="dlBadge()">Download Badge</button>
+    <button class="btn-dl card"  onclick="dlCard()">Download Reflection Card</button>
+  </div>
+  <div class="resources" aria-label="Resources">
+    <p class="res-head">Take These With You</p>
+    <div class="res-grid" role="list">
+      <div class="res-card" role="listitem"><span class="ri" aria-hidden="true">&#x1F4CB;</span><div class="rt">3-Decision Framework</div><div class="rd">One-page design brief template, discipline neutral</div></div>
+      <div class="res-card" role="listitem"><span class="ri" aria-hidden="true">&#x1F3AE;</span><div class="rt">Ghost Controller</div><div class="rd">Acct 2301 escape room, in-person and SCORM online versions</div></div>
+      <div class="res-card" role="listitem"><span class="ri" aria-hidden="true">&#x1F4D0;</span><div class="rt">Modality Design Notes</div><div class="rd">How in-person stations become async SCORM delivery</div></div>
+      <div class="res-card" role="listitem"><span class="ri" aria-hidden="true">&#x1F3C6;</span><div class="rt">Award-Winning Framework</div><div class="rd">UDL and QM redesign, AOFC Pinnacle of Excellence 2026</div></div>
+    </div>
+    <div class="contact-strip">
+      <p>The game series, course design framework, and this experience were built at Tyler Junior College. Want to talk about building your own?</p>
+      <a href="mailto:Jennifer.Coon@tjc.edu">Jennifer.Coon@tjc.edu</a>
+      <small>Jennifer Coon, CIA, CFE, Professor of Accounting, Tyler Junior College</small>
+    </div>
+  </div>
+</div>
+
+<canvas id="reflCard" width="1000" height="580" aria-hidden="true"></canvas>
+
+</main>
+<script>
+
+// STATE
+let agentName = 'Agent';
+let b1='', b2='', b3='', refl='';
+const CORRECT = {1:'B', 2:'C'};
+const attempts = {1:2, 2:2};
+const done = {1:false, 2:false};
+
+const FB = {
+  1: {
+    B: 'Correct! Research on active learning and Brookfield\'s work on critical thinking both point to the same mechanism: students learn when they must reason socially, under pressure, before the grade. Publisher software confirms knowledge but does not build the capacity to think differently under pressure.',
+    hint: 'Think about the second icon card above. The escape room addresses something publisher assignments struggle to create. Which answer option relates to that gap?',
+    final: 'The correct answer is B. The escape room\'s main advantage is placing students under social pressure to reason through material before the exam, creating the conditions for genuine thinking rather than just recall.'
+  },
+  2: {
+    C: 'Correct! Look at the verbs in those statements. Students described evaluating, connecting, and self-assessing, not just feeling engaged. The social element, including administrators joining spontaneously, converted review into active thinking.',
+    hint: 'Look at the verbs in the student statements. What were students actually having to DO during the game, not just how they felt about it?',
+    final: 'The correct answer is C. Students must actively reason, collaborate, and honestly self-assess before the stakes are real. That is the mechanism the testimony keeps describing.'
+  }
+};
+
+// ACCORDION
+function toggleAcc(id) {
+  const btn = document.querySelector('#' + id + ' .acc-btn');
+  const panel = document.getElementById(id + 'panel');
+  const open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  panel.classList.toggle('open', !open);
+}
+
+// COVER
+document.getElementById('agentName').addEventListener('keydown', e => { if (e.key === 'Enter') startGame(); });
+function startGame() {
+  agentName = document.getElementById('agentName').value.trim() || 'Agent';
+  document.getElementById('screen-cover').classList.remove('active');
+  document.getElementById('screen-game').classList.add('active');
+  window.scrollTo({top:0, behavior:'instant'});
+}
+
+// ANSWER
+function answerQ(qNum, choice) {
+  if (done[qNum]) return;
+  const correct = CORRECT[qNum];
+  const isRight = choice === correct;
+  const attEl = document.getElementById('att' + qNum);
+  const fbEl  = document.getElementById('q' + qNum + 'fb');
+  const opts  = document.querySelectorAll('#opts' + qNum + ' .opt');
+
+  if (isRight) {
+    done[qNum] = true;
+    opts.forEach(btn => {
+      const l = btn.querySelector('.opt-l').textContent.trim();
+      btn.disabled = true;
+      if (l === correct) btn.classList.add('correct');
+      else btn.classList.add('dimmed');
+    });
+    fbEl.textContent = FB[qNum][correct];
+    fbEl.className = 'feedback show ok';
+    attEl.textContent = 'Correct!';
+    setTimeout(() => unlock(qNum - 1), 400);
+  } else {
+    attempts[qNum]--;
+    // Mark chosen as wrong
+    opts.forEach(btn => {
+      const l = btn.querySelector('.opt-l').textContent.trim();
+      if (l === choice) { btn.classList.add('wrong'); btn.disabled = true; }
+    });
+    if (attempts[qNum] > 0) {
+      attEl.textContent = 'Not quite, you have ' + attempts[qNum] + ' attempt' + (attempts[qNum] === 1 ? '' : 's') + ' remaining.';
+      fbEl.textContent = FB[qNum].hint;
+      fbEl.className = 'feedback show miss';
+    } else {
+      done[qNum] = true;
+      opts.forEach(btn => {
+        const l = btn.querySelector('.opt-l').textContent.trim();
+        btn.disabled = true;
+        if (l === correct) btn.classList.add('correct');
+        else if (!btn.classList.contains('wrong')) btn.classList.add('dimmed');
+      });
+      attEl.textContent = 'No more attempts.';
+      fbEl.textContent = FB[qNum].final;
+      fbEl.className = 'feedback show miss';
+      setTimeout(() => unlock(qNum - 1), 1200);
+    }
+  }
+}
+
+function checkBrief() {
+  b1 = document.getElementById('b1').value.trim();
+  b2 = document.getElementById('b2').value.trim();
+  b3 = document.getElementById('b3').value.trim();
+  if (b1.length > 8 && b2.length > 8 && b3.length > 8) unlock(2);
+}
+
+function checkRefl() {
+  refl = document.getElementById('refl').value.trim();
+  const cnt = document.getElementById('refl-count');
+  const fb  = document.getElementById('refl-fb');
+  cnt.textContent = refl.length + ' / 40 characters minimum';
+  if (refl.length >= 40) {
+    unlock(3);
+    fb.textContent = 'Reflection logged. Ready to close the case.';
+    fb.className = 'feedback show ok';
+  } else if (refl.length > 0) {
+    fb.textContent = (40 - refl.length) + ' more character' + (40 - refl.length !== 1 ? 's' : '') + ' needed.';
+    fb.className = 'feedback show miss';
+  } else { fb.className = 'feedback'; }
+}
+
+function unlock(idx) {
+  const btn = document.getElementById('adv' + idx);
+  const lk  = document.getElementById('lock' + idx);
+  btn.classList.add('on');
+  if (lk) { lk.classList.add('hidden'); lk.setAttribute('aria-hidden','true'); }
+}
+
+function goNext(nextIdx) {
+  b1 = document.getElementById('b1')?.value.trim() || b1;
+  b2 = document.getElementById('b2')?.value.trim() || b2;
+  b3 = document.getElementById('b3')?.value.trim() || b3;
+  refl = document.getElementById('refl')?.value.trim() || refl;
+
+  document.querySelectorAll('.station').forEach(s => s.classList.remove('active'));
+  for (let i = 0; i < 4; i++) {
+    const p = document.getElementById('pip' + i);
+    p.classList.remove('done','now');
+    if (i < nextIdx)       { p.classList.add('done'); p.setAttribute('aria-label','Station '+(i+1)+', complete'); }
+    else if (i === nextIdx){ p.classList.add('now');  p.setAttribute('aria-label','Station '+(i+1)+', current'); }
+    else p.setAttribute('aria-label','Station '+(i+1));
+  }
+  document.getElementById('hudLbl').textContent = 'Station ' + (nextIdx+1) + ' / 4';
+  const next = document.getElementById('st' + nextIdx);
+  next.classList.add('active');
+  const h = next.querySelector('h2');
+  if (h) { h.setAttribute('tabindex','-1'); h.focus(); }
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function showDone() {
+  b1   = document.getElementById('b1')?.value.trim()   || b1;
+  b2   = document.getElementById('b2')?.value.trim()   || b2;
+  b3   = document.getElementById('b3')?.value.trim()   || b3;
+  refl = document.getElementById('refl')?.value.trim() || refl;
+  document.getElementById('screen-game').classList.remove('active');
+  document.getElementById('screen-complete').classList.add('active');
+  drawBadge();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// BADGE
+function drawBadge() {
+  const c = document.getElementById('badgeCanvas');
+  const x = c.getContext('2d');
+  const W=200, H=200, cx=100, cy=100;
+  const g = x.createRadialGradient(cx,cy,40,cx,cy,100);
+  g.addColorStop(0,'#012a55'); g.addColorStop(1,'#0d3d6b');
+  x.fillStyle = g;
+  x.beginPath(); x.arc(cx,cy,98,0,Math.PI*2); x.fill();
+  // NISOD stripe arcs
+  [{c:'#2a8fa8',r:88},{c:'#7c70a0',r:82},{c:'#cbb29e',r:76}].forEach(({c,r}) => {
+    x.strokeStyle=c; x.lineWidth=4;
+    x.beginPath(); x.arc(cx,cy,r,-Math.PI*.68,-Math.PI*.1); x.stroke();
+  });
+  x.fillStyle='#1a5490';
+  x.beginPath(); x.arc(cx,cy,70,0,Math.PI*2); x.fill();
+  x.strokeStyle='#f0c040'; x.lineWidth=3;
+  x.beginPath(); x.arc(cx,cy,70,0,Math.PI*2); x.stroke();
+  x.font='38px serif'; x.textAlign='center'; x.textBaseline='middle';
+  x.fillText('&#x1F50E;'.replace('&#x1F50E;','\uD83D\uDD0E'), cx, cy-18);
+  // Magnifier emoji fallback
+  x.font='36px serif'; x.fillText('\uD83D\uDD0E', cx, cy-18);
+  x.font="bold 13px Georgia, serif"; x.fillStyle='#f0c040';
+  x.textBaseline='alphabetic'; x.fillText('THE ARCHITECT', cx, cy+20);
+  const nm = agentName.length>18 ? agentName.slice(0,16)+'...' : agentName;
+  x.font="11px 'Courier New', monospace"; x.fillStyle='rgba(255,255,255,.75)';
+  x.fillText(nm, cx, cy+36);
+  x.font="9px 'Courier New', monospace"; x.fillStyle='rgba(255,255,255,.4)';
+  x.fillText('NISOD 2026', cx, cy+52);
+  x.strokeStyle='rgba(255,255,255,.12)'; x.lineWidth=2;
+  x.beginPath(); x.arc(cx,cy,97,0,Math.PI*2); x.stroke();
+}
+
+function dlBadge() {
+  const c = document.getElementById('badgeCanvas');
+  const a = document.createElement('a');
+  const s = agentName.replace(/[^a-z0-9]/gi,'_').toLowerCase() || 'agent';
+  a.download = 'nisod2026_badge_' + s + '.png';
+  a.href = c.toDataURL('image/png'); a.click();
+}
+
+// REFLECTION CARD
+function dlCard() {
+  const c   = document.getElementById('reflCard');
+  const ctx = c.getContext('2d');
+  const W = 1000, H = 580;
+
+  // Background
+  const bg = ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#faf7f4'); bg.addColorStop(1,'#f0edf8');
+  ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+
+  // Top stripe
+  const str = ctx.createLinearGradient(0,0,W,0);
+  str.addColorStop(0,'#2a8fa8'); str.addColorStop(.5,'#7c70a0'); str.addColorStop(1,'#cbb29e');
+  ctx.fillStyle = str; ctx.fillRect(0,0,W,7);
+
+  // Navy left panel
+  ctx.fillStyle = '#012a55'; ctx.fillRect(0,7,230,H-7);
+
+  // Draw badge on left
+  ctx.drawImage(document.getElementById('badgeCanvas'), 15,25,200,200);
+
+  // Agent name
+  ctx.font = "bold 18px Georgia, serif";
+  ctx.fillStyle = '#f0c040'; ctx.textAlign='center'; ctx.textBaseline='top';
+  const dn = agentName.length>22 ? agentName.slice(0,20)+'...' : agentName;
+  ctx.fillText(dn, 115, 238);
+  ctx.font="11px 'Courier New', monospace"; ctx.fillStyle='rgba(255,255,255,.5)';
+  ctx.fillText('THE ARCHITECT', 115, 260);
+  ctx.fillText('NISOD 2026', 115, 276);
+
+  // NISOD dots
+  [{c:'#2a8fa8'},{c:'#7c70a0'},{c:'#cbb29e'}].forEach(({c},i)=>{
+    ctx.fillStyle=c; ctx.beginPath();
+    ctx.arc(80+i*30, H-28, 9, 0, Math.PI*2); ctx.fill();
+  });
+  ctx.font="bold 11px 'Courier New', monospace";
+  ctx.fillStyle='rgba(255,255,255,.6)';
+  ctx.textAlign='center'; ctx.textBaseline='top';
+  ctx.fillText('Jennifer.Coon@tjc.edu', 115, 310);
+  ctx.font="10px 'Courier New', monospace";
+  ctx.fillStyle='rgba(255,255,255,.35)';
+  ctx.fillText('Tyler Junior College', 115, 330);
+  ctx.fillText('NISOD 2026', 115, 347);
+  finishCard(ctx, W, H, c);
+}
+
+function finishCard(ctx, W, H, canvas) {
+  const X=256, PAD=28, CW=W-X-PAD;
+
+  // Title
+  ctx.fillStyle='#012a55'; ctx.font="bold 26px Georgia, serif";
+  ctx.textAlign='left'; ctx.textBaseline='top';
+  ctx.fillText('My Game Design Brief', X, 28);
+
+  ctx.font="10px 'Courier New', monospace"; ctx.fillStyle='#7c70a0';
+  ctx.fillText('NISOD 2026  \u00B7  From Review Sheets to Crime Scene  \u00B7  Jennifer Coon, CIA, CFE', X, 62);
+
+  // Divider
+  ctx.strokeStyle='#d8e2ec'; ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(X,80); ctx.lineTo(W-PAD,80); ctx.stroke();
+
+  function pill(label, color, y) {
+    ctx.fillStyle = color;
+    rrect(ctx, X, y, 172, 22, 4); ctx.fill();
+    ctx.font="bold 10px 'Courier New', monospace";
+    ctx.fillStyle='#fff'; ctx.textAlign='left'; ctx.textBaseline='middle';
+    ctx.fillText(label, X+10, y+11);
+  }
+
+  function section(label, val, y, color) {
+    pill(label, color, y);
+    ctx.fillStyle='#1a2535'; ctx.font="14px Georgia, serif"; ctx.textBaseline='top';
+    const lines = wrap(ctx, val || '(not completed)', CW, 14);
+    lines.slice(0,3).forEach((l,i) => ctx.fillText(l, X, y+28+i*20));
+    return y + 28 + Math.min(lines.length,3)*20 + 14;
+  }
+
+  let y = 92;
+  y = section('DECISION 1, CONCEPT', b1, y, '#2a8fa8');
+  y = section('DECISION 2, WIN CONDITION', b2, y, '#7c70a0');
+  y = section('DECISION 3, IN-PERSON DESIGN', b3, y, '#a07040');
+
+  // Divider
+  ctx.strokeStyle='#d8e2ec'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(X,y+4); ctx.lineTo(W-PAD,y+4); ctx.stroke();
+  y += 16;
+
+  pill('REFLECTION, WHAT WOULD IT TAKE?', '#012a55', y);
+  y += 28;
+  ctx.fillStyle='#2d3f55'; ctx.font="13px Georgia, serif"; ctx.textBaseline='top';
+  wrap(ctx, refl || '(not completed)', CW, 13).slice(0,4).forEach((l,i) => ctx.fillText(l, X, y+i*19));
+
+  // Footer
+  ctx.fillStyle='#f0edf8'; ctx.fillRect(X, H-30, W-X, 30);
+  ctx.font="10px 'Courier New', monospace"; ctx.fillStyle='#9a8aaa';
+  ctx.textBaseline='middle';
+  ctx.fillText('Jennifer.Coon@tjc.edu  \u00B7  Tyler Junior College  \u00B7  NISOD 2026', X, H-15);
+
+  // Download
+  const a = document.createElement('a');
+  const s = agentName.replace(/[^a-z0-9]/gi,'_').toLowerCase() || 'agent';
+  a.download = 'nisod2026_reflection_card_' + s + '.png';
+  a.href = canvas.toDataURL('image/png'); a.click();
+}
+
+function wrap(ctx, text, maxW, size) {
+  ctx.font = size + "px Georgia, serif";
+  const words = text.split(' '), lines = [];
+  let line = '';
+  words.forEach(w => {
+    const t = line ? line+' '+w : w;
+    if (ctx.measureText(t).width > maxW && line) { lines.push(line); line=w; }
+    else line = t;
+  });
+  if (line) lines.push(line);
+  return lines;
+}
+
+function rrect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.closePath();
+}
+</script>
+</body>
+</html>
