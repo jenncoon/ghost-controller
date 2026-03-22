@@ -51,7 +51,6 @@ body { background: var(--cream); color: var(--ink); font-family: var(--f-body); 
 .skip-link:focus { top: 16px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
-/* SCREENS */
 .screen { display: none; }
 .screen.active { display: block; }
 
@@ -66,9 +65,7 @@ body { background: var(--cream); color: var(--ink); font-family: var(--f-body); 
 
 .dot-strip { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
 .dot { width: 10px; height: 10px; border-radius: 50%; }
-.d1 { background: var(--teal); }
-.d2 { background: var(--purple); }
-.d3 { background: var(--tan); }
+.d1 { background: var(--teal); } .d2 { background: var(--purple); } .d3 { background: var(--tan); }
 .conf-lbl { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 
 .cover-title { font-family: var(--f-head); font-size: clamp(1.9rem, 7vw, 2.8rem); font-weight: 900; color: var(--navy); line-height: 1.1; margin-bottom: 6px; }
@@ -105,12 +102,10 @@ body { background: var(--cream); color: var(--ink); font-family: var(--f-body); 
 @keyframes glow { 0%,100%{opacity:1} 50%{opacity:.5} }
 .hud-right { font-family: var(--f-mono); font-size: .62rem; color: rgba(255,255,255,.5); flex-shrink: 0; letter-spacing: .05em; }
 
-/* FAC BANNER */
 .fac-banner { background: linear-gradient(90deg, var(--purple), var(--purple-lt)); padding: 13px 20px; display: flex; align-items: center; gap: 12px; }
 .fac-text { font-size: .88rem; color: #fff; font-weight: 700; line-height: 1.4; }
 .fac-text span { font-weight: 400; opacity: .88; }
 
-/* GAME */
 #screen-game { display: none; }
 #screen-game.active { display: block; }
 .station { display: none; }
@@ -123,21 +118,18 @@ body { background: var(--cream); color: var(--ink); font-family: var(--f-body); 
 .stn-title { font-family: var(--f-head); font-size: clamp(1.8rem, 6vw, 2.5rem); font-weight: 900; color: var(--navy); line-height: 1.1; margin-bottom: 28px; }
 .stn-title em { color: var(--teal); font-style: normal; }
 
-/* STAT CARDS */
 .stat-cards { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin-bottom: 24px; }
 .stat-card { background: var(--navy); border-radius: var(--r); padding: 20px 16px; text-align: center; }
 .stat-card .big { font-family: var(--f-head); font-size: 2.8rem; font-weight: 900; color: var(--gold-lt); line-height: 1; display: block; margin-bottom: 6px; }
 .stat-card .desc { font-family: var(--f-mono); font-size: .65rem; color: rgba(255,255,255,.65); line-height: 1.45; text-transform: uppercase; }
 .stat-card .src { font-size: .55rem; color: rgba(255,255,255,.35); margin-top: 4px; display: block; }
 
-/* ICON ROW */
 .icon-row { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
 .icon-card { flex: 1; min-width: 140px; background: var(--white); border: 2px solid var(--border2); border-radius: var(--r); padding: 18px 16px; box-shadow: var(--shadow); }
 .icon-card .ii { font-size: 2rem; display: block; margin-bottom: 10px; }
 .icon-card .ih { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; letter-spacing: .1em; color: var(--purple); text-transform: uppercase; margin-bottom: 5px; }
 .icon-card .ib { font-size: .9rem; color: var(--ink2); line-height: 1.5; }
 
-/* DOC CARD */
 .doc-card { background: var(--white); border: 2px solid var(--border); border-radius: var(--r); margin-bottom: 20px; box-shadow: var(--shadow); overflow: hidden; }
 .doc-hd { background: var(--navy); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
 .doc-lbl { font-family: var(--f-mono); font-size: .62rem; letter-spacing: .08em; color: rgba(255,255,255,.65); text-transform: uppercase; }
@@ -150,7 +142,6 @@ body { background: var(--cream); color: var(--ink); font-family: var(--f-body); 
 .doc-bd p:last-child { margin-bottom: 0; }
 .hl { background: linear-gradient(120deg, rgba(42,143,168,.18), rgba(42,143,168,.12)); padding: 1px 4px; border-radius: 3px; font-weight: 700; }
 
-/* ACCORDION QUOTES */
 .accordion { border: 2px solid var(--border); border-radius: var(--r); margin-bottom: 14px; overflow: hidden; box-shadow: var(--shadow); }
 .acc-btn { width: 100%; background: var(--white); border: none; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; font-family: var(--f-body); font-size: 1rem; font-weight: 800; color: var(--navy); text-align: left; min-height: 56px; transition: background .15s; }
 .acc-btn:hover { background: var(--teal-bg); }
@@ -164,8 +155,10 @@ body { background: var(--cream); color: var(--ink); font-family: var(--f-body); 
 .quote-card { border-left: 4px solid var(--tan); padding: 16px 18px 12px; margin-top: 14px; background: var(--white); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
 .quote-card blockquote { font-size: 1rem; font-style: italic; color: var(--ink); line-height: 1.7; margin-bottom: 8px; }
 .quote-card cite { font-family: var(--f-mono); font-size: .62rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; font-style: normal; }
+.pitfall-card { border-left: 4px solid var(--purple-lt); padding: 16px 18px 12px; margin-top: 14px; background: var(--white); border-radius: 0 var(--r-sm) var(--r-sm) 0; }
+.pitfall-card .pt { font-family: var(--f-mono); font-size: .68rem; font-weight: 700; color: var(--purple); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+.pitfall-card p { font-size: .95rem; color: var(--ink2); line-height: 1.6; }
 
-/* DECISION CARDS */
 .decision-stack { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
 .dec-card { border-radius: var(--r); padding: 20px; display: flex; gap: 16px; align-items: flex-start; box-shadow: var(--shadow); }
 .dec-card:nth-child(1) { background: var(--teal-bg); border: 2px solid var(--teal-lt); }
@@ -178,7 +171,6 @@ body { background: var(--cream); color: var(--ink); font-family: var(--f-body); 
 .dec-q { font-family: var(--f-head); font-size: 1.1rem; font-weight: 700; color: var(--navy); line-height: 1.25; margin-bottom: 6px; }
 .dec-s { font-size: .9rem; color: var(--ink2); line-height: 1.55; }
 
-/* QUESTION BLOCK */
 .q-block { background: var(--white); border: 2px solid var(--border); border-radius: var(--r); padding: 4px 20px 24px; margin-bottom: 24px; box-shadow: var(--shadow); overflow: hidden; }
 .q-stripe { height: 4px; background: linear-gradient(90deg, var(--teal), var(--purple)); margin: 0 -20px 20px; }
 .q-eye { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; letter-spacing: .15em; color: var(--teal); text-transform: uppercase; margin-bottom: 10px; }
@@ -199,10 +191,33 @@ body { background: var(--cream); color: var(--ink); font-family: var(--f-body); 
 .feedback.show { display: block; }
 .feedback.ok { background: var(--ok-bg); border-left: 4px solid var(--ok); color: #145c2e; }
 .feedback.miss { background: var(--err-bg); border-left: 4px solid var(--err); color: #7a1f1f; }
-.hint-btn { background: none; border: none; font-family: var(--f-mono); font-size: .72rem; font-weight: 600; color: var(--teal); cursor: pointer; padding: 10px 0 0; text-decoration: underline; text-align: left; }
-.hint-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 3px; }
 
-/* TEXT FIELDS */
+/* SORT ACTIVITY */
+.sort-intro { font-size: .95rem; color: var(--ink2); line-height: 1.6; margin-bottom: 18px; }
+.sort-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+.sort-col { background: var(--cream); border: 2px solid var(--border); border-radius: var(--r); padding: 14px; min-height: 220px; transition: border-color .2s, background .2s; }
+.sort-col.drag-over { border-color: var(--teal); background: var(--teal-bg); }
+.sort-col.think.drag-over { border-color: var(--purple); background: var(--purple-bg); }
+.sort-col-head { font-family: var(--f-mono); font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+.sort-col.engage .sort-col-head { color: var(--teal); border-color: var(--teal-lt); }
+.sort-col.think .sort-col-head { color: var(--purple); border-color: var(--purple-lt); }
+.sort-col-items { display: flex; flex-direction: column; gap: 6px; min-height: 140px; }
+.sort-phrase { background: var(--white); border: 2px solid var(--border); border-radius: var(--r-sm); padding: 10px 12px; font-size: .88rem; color: var(--ink); line-height: 1.4; cursor: grab; transition: border-color .15s, background .15s, opacity .15s, transform .15s; font-family: var(--f-body); text-align: left; width: 100%; font-weight: 600; user-select: none; -webkit-user-select: none; touch-action: none; }
+.sort-phrase:hover { border-color: var(--teal); background: var(--teal-bg); }
+.sort-phrase:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+.sort-phrase.dragging { opacity: .4; cursor: grabbing; transform: scale(.97); }
+.sort-phrase.drag-ghost { position: fixed; pointer-events: none; z-index: 9999; opacity: .92; box-shadow: 0 8px 24px rgba(1,42,85,.25); transform: rotate(1.5deg); cursor: grabbing; background: var(--white); border: 2px solid var(--teal); border-radius: var(--r-sm); padding: 10px 12px; font-size: .88rem; font-family: var(--f-body); font-weight: 600; color: var(--ink); line-height: 1.4; max-width: 260px; }
+.sort-phrase.placed-engage { border-color: var(--teal); background: var(--teal-bg); color: var(--navy); }
+.sort-phrase.placed-think { border-color: var(--purple); background: var(--purple-bg); color: var(--navy); }
+.sort-phrase.correct-final { border-color: var(--ok); background: var(--ok-bg); color: var(--ok); pointer-events: none; cursor: default; }
+.sort-phrase.wrong-final { border-color: var(--err); background: var(--err-bg); color: var(--err); cursor: grab; }
+.sort-bank { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; padding: 14px; background: var(--tan-bg); border: 2px dashed var(--tan); border-radius: var(--r); min-height: 60px; transition: border-color .2s, background .2s; }
+.sort-bank.drag-over { border-color: var(--teal); background: var(--teal-bg); }
+.sort-bank-head { font-family: var(--f-mono); font-size: .62rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.btn-check-sort { background: var(--navy); color: #fff; font-family: var(--f-body); font-size: .95rem; font-weight: 800; padding: 14px 24px; border: none; border-radius: var(--r-sm); cursor: pointer; transition: all .15s; opacity: 0; pointer-events: none; }
+.btn-check-sort.on { opacity: 1; pointer-events: all; }
+.btn-check-sort:hover { background: var(--navy-lt); }
+
 .field-group { margin-bottom: 18px; }
 .field-group label { display: block; font-family: var(--f-mono); font-size: .68rem; font-weight: 600; letter-spacing: .1em; color: var(--navy); text-transform: uppercase; margin-bottom: 7px; }
 .field-group textarea { width: 100%; background: var(--cream); border: 2px solid var(--border); border-radius: var(--r-sm); color: var(--ink); font-family: var(--f-body); font-size: 1rem; padding: 14px; resize: vertical; min-height: 90px; line-height: 1.6; transition: border-color .15s; -webkit-appearance: none; }
@@ -210,7 +225,6 @@ body { background: var(--cream); color: var(--ink); font-family: var(--f-body); 
 .field-group textarea::placeholder { color: var(--muted2); }
 .char-c { font-family: var(--f-mono); font-size: .6rem; color: var(--muted2); text-align: right; margin-top: 4px; letter-spacing: .04em; }
 
-/* FOOTER */
 .stn-footer { margin-top: 32px; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 .lock-hint { font-family: var(--f-mono); font-size: .7rem; color: var(--muted); letter-spacing: .05em; transition: opacity .3s; display: flex; align-items: center; gap: 7px; }
 .lock-hint.hidden { opacity: 0; pointer-events: none; }
@@ -240,7 +254,7 @@ canvas#badgeCanvas { display: block; border-radius: 50%; box-shadow: 0 0 0 5px r
 .resources { width: 100%; max-width: 560px; animation: slideUp .5s ease .55s both; }
 .res-head { font-family: var(--f-mono); font-size: .65rem; font-weight: 600; letter-spacing: .16em; color: var(--teal-lt); text-transform: uppercase; text-align: left; margin-bottom: 14px; display: flex; align-items: center; gap: 12px; }
 .res-head::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.15); }
-.res-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-bottom: 20px; }
+.res-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
 .res-card { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12); border-radius: var(--r); padding: 16px 14px; text-align: left; }
 .res-card .ri { font-size: 1.6rem; display: block; margin-bottom: 8px; }
 .res-card .rt { font-family: var(--f-mono); font-size: .68rem; font-weight: 600; color: #fff; margin-bottom: 4px; }
@@ -249,13 +263,14 @@ canvas#badgeCanvas { display: block; border-radius: 50%; box-shadow: 0 0 0 5px r
 .contact-strip p { font-size: .95rem; color: rgba(255,255,255,.7); margin-bottom: 10px; line-height: 1.6; }
 .contact-strip a { font-family: var(--f-mono); font-size: .9rem; color: var(--gold-lt); text-decoration: none; display: block; margin-bottom: 4px; }
 .contact-strip a:hover { color: #fff; text-decoration: underline; }
-.contact-strip small { font-family: var(--f-mono); font-size: .62rem; color: rgba(255,255,255,.35); letter-spacing: .05em; }
+.contact-strip small { font-family: var(--f-mono); font-size: .62rem; color: rgba(255,255,255,.35); letter-spacing: .05em; display: block; }
 
 canvas#reflCard { display: none; }
 
 @keyframes slideUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes badgePop { from { opacity: 0; transform: scale(.3) rotate(-20deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
-@media (max-width: 440px) { .res-grid { grid-template-columns: 1fr; } .dl-group { flex-direction: column; align-items: center; } .btn-dl { width: 100%; justify-content: center; } }
+@media (max-width: 520px) { .sort-grid { grid-template-columns: 1fr; } }
+@media (max-width: 440px) { .dl-group { flex-direction: column; align-items: center; } .btn-dl { width: 100%; justify-content: center; } }
 @media (forced-colors: active) { .opt, .btn-primary, .btn-adv, .btn-dl { border: 2px solid ButtonText; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 </style>
@@ -269,7 +284,7 @@ canvas#reflCard { display: none; }
   <div class="cover-card">
     <div class="dot-strip" aria-hidden="true">
       <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
-      <span class="conf-lbl">NISOD 2026, Austin TX, May 23-26</span>
+      <span class="conf-lbl">NISOD 2026 &mdash; Austin TX &mdash; May 23&ndash;26</span>
     </div>
     <h1 class="cover-title">From Review Sheets<br>to <em>Crime Scene</em></h1>
     <p class="cover-sub">An interactive field exercise in escape room design</p>
@@ -289,7 +304,7 @@ canvas#reflCard { display: none; }
     </div>
     <button class="btn-primary" onclick="startGame()">Begin Briefing</button>
   </div>
-  <p class="cover-foot">Jennifer Coon, CIA, CFE, Professor of Accounting, Tyler Junior College</p>
+  <p class="cover-foot">Jennifer Coon, CIA, CFE &mdash; Professor of Accounting, Tyler Junior College</p>
 </div>
 
 
@@ -308,44 +323,44 @@ canvas#reflCard { display: none; }
   </div>
 
   <div class="fac-banner" role="note">
-    <div class="fac-text">Facilitated Session <span>- Follow along on your device. Answer questions when your presenter prompts the room.</span></div>
+    <div class="fac-text">Facilitated Session <span>&mdash; Follow along on your device. Answer questions when your presenter prompts the room.</span></div>
   </div>
 
   <!-- STATION 1 -->
   <section class="station active" id="st0" aria-labelledby="s0h">
     <div class="stn-body">
-      <p class="stn-eye" aria-hidden="true">Station 01, Incident Report</p>
+      <p class="stn-eye" aria-hidden="true">Station 01 &mdash; Incident Report</p>
       <h2 class="stn-title" id="s0h">The <em>Engagement</em> Gap</h2>
 
       <div class="stat-cards" role="list" aria-label="Research statistics">
         <div class="stat-card" role="listitem">
-          <span class="big" aria-label="20 percent">20%</span>
-          <span class="desc">of what students hear is retained</span>
-          <span class="src">Coram, 2005</span>
+          <span class="big" aria-label="89 percent">89%</span>
+          <span class="desc">of studies in a 2024 meta-analysis reported gamification improved student engagement and academic performance</span>
+          <span class="src">Zeng et al., 2024</span>
         </div>
         <div class="stat-card" role="listitem">
-          <span class="big" aria-label="95 percent">95%</span>
-          <span class="desc">of what they teach or explain to others is retained</span>
-          <span class="src">Coram, 2005</span>
+          <span class="big" aria-label="39 percent">39%</span>
+          <span class="desc">higher success rate in gamified learning vs. online learning in a three-year longitudinal study of higher education students</span>
+          <span class="src">Lampropoulos &amp; Sidiropoulos, 2024</span>
         </div>
       </div>
 
-      <div class="icon-row" role="list" aria-label="What conventional review does and doesn't do">
+      <div class="icon-row" role="list" aria-label="Kahoot vs escape room comparison">
         <div class="icon-card" role="listitem">
-          <span class="ii" aria-hidden="true">&#x2705;</span>
-          <div class="ih">What review DOES</div>
-          <div class="ib">Confirms what students already know. Checks completion. Reduces uncertainty.</div>
+          <span class="ii" aria-hidden="true">&#x26A1;</span>
+          <div class="ih">Kahoot! and rapid review tools</div>
+          <div class="ib">Excellent for knowledge retrieval, quick recall, and energizing a room. Students activate what they already know.</div>
         </div>
         <div class="icon-card" role="listitem">
-          <span class="ii" aria-hidden="true">&#x1F6AB;</span>
-          <div class="ih">What it STRUGGLES to do</div>
-          <div class="ib">Create pressure. Force peer negotiation. Ask students to reason before the stakes are real.</div>
+          <span class="ii" aria-hidden="true">&#x1F50D;</span>
+          <div class="ih">Educational escape rooms</div>
+          <div class="ib">Require synthesis, application, and reasoning through connected concepts. Students build understanding inside a story.</div>
         </div>
       </div>
 
       <div class="doc-card">
         <div class="doc-hd">
-          <span class="doc-lbl">Field Observation, Acct 2301, Spring 2025</span>
+          <span class="doc-lbl">Field Observation, Acct 2301, Prior Semesters</span>
           <span class="doc-tag tl">Field Report</span>
         </div>
         <div class="doc-bd">
@@ -358,13 +373,13 @@ canvas#reflCard { display: none; }
       <div class="q-block" role="group" aria-labelledby="q1lbl">
         <div class="q-stripe" aria-hidden="true"></div>
         <p class="q-eye" aria-hidden="true">Question 01 of 02</p>
-        <p class="q-text" id="q1lbl">Compared to a publisher review assignment, where does an escape room tend to have a clear advantage?</p>
+        <p class="q-text" id="q1lbl">Based on the research and the field observation above, what is the primary reason gamified review produces a different result than a traditional assignment?</p>
         <p class="attempts-left" id="att1" aria-live="polite">You have 2 attempts.</p>
         <div class="opts" id="opts1" role="radiogroup" aria-labelledby="q1lbl">
-          <button class="opt" onclick="answerQ(1,'A')"><span class="opt-l" aria-hidden="true">A</span><span>Delivering content to more students at the same time</span></button>
-          <button class="opt" onclick="answerQ(1,'B')"><span class="opt-l" aria-hidden="true">B</span><span>Placing students under social pressure to reason through material before the grade</span></button>
-          <button class="opt" onclick="answerQ(1,'C')"><span class="opt-l" aria-hidden="true">C</span><span>Providing a lower-stakes grading option for struggling students</span></button>
-          <button class="opt" onclick="answerQ(1,'D')"><span class="opt-l" aria-hidden="true">D</span><span>Aligning more closely with publisher learning objectives</span></button>
+          <button class="opt" onclick="answerQ(1,'A')"><span class="opt-l" aria-hidden="true">A</span><span>Gamified review covers more content in less time than publisher assignments</span></button>
+          <button class="opt" onclick="answerQ(1,'B')"><span class="opt-l" aria-hidden="true">B</span><span>Students are more likely to complete a game than a traditional assignment because the format is more enjoyable and the grade attached is lower stakes, increasing overall completion rates</span></button>
+          <button class="opt" onclick="answerQ(1,'C')"><span class="opt-l" aria-hidden="true">C</span><span>Narrative framing and immersion create buy-in that changes how students engage with the material, not just whether they finish it</span></button>
+          <button class="opt" onclick="answerQ(1,'D')"><span class="opt-l" aria-hidden="true">D</span><span>Games are more effective because they include immediate feedback on correct and incorrect answers</span></button>
         </div>
         <div class="feedback" id="q1fb" role="alert" aria-live="polite"></div>
       </div>
@@ -379,7 +394,7 @@ canvas#reflCard { display: none; }
   <!-- STATION 2 -->
   <section class="station" id="st1" aria-labelledby="s1h">
     <div class="stn-body">
-      <p class="stn-eye" aria-hidden="true">Station 02, Evidence Locker</p>
+      <p class="stn-eye" aria-hidden="true">Station 02 &mdash; Evidence Locker</p>
       <h2 class="stn-title" id="s1h">Student <em>Testimony</em></h2>
 
       <div class="stat-cards" role="list" aria-label="Pilot data">
@@ -393,13 +408,12 @@ canvas#reflCard { display: none; }
         </div>
       </div>
 
-      <!-- Expandable in-person quotes -->
       <div class="accordion" id="acc1">
         <button class="acc-btn" aria-expanded="false" aria-controls="acc1panel" onclick="toggleAcc('acc1')">
           <span class="acc-label"><span class="acc-icon" aria-hidden="true">&#x1F3EB;</span> In-Person Student Voices</span>
           <span class="acc-chevron" aria-hidden="true">&#x25BE;</span>
         </button>
-        <div class="acc-panel" id="acc1panel" role="region" aria-labelledby="acc1 .acc-btn">
+        <div class="acc-panel" id="acc1panel" role="region">
           <div class="quote-card">
             <blockquote>"I liked how the review was interactive, a group activity where everyone has the chance to participate, giving those who maybe don't understand the subject a chance to understand it better."</blockquote>
             <cite>In-person section student</cite>
@@ -419,7 +433,6 @@ canvas#reflCard { display: none; }
         </div>
       </div>
 
-      <!-- Expandable online quotes -->
       <div class="accordion" id="acc2">
         <button class="acc-btn" aria-expanded="false" aria-controls="acc2panel" onclick="toggleAcc('acc2')">
           <span class="acc-label"><span class="acc-icon" aria-hidden="true">&#x1F4BB;</span> Online Student Voices</span>
@@ -441,22 +454,34 @@ canvas#reflCard { display: none; }
         </div>
       </div>
 
-      <div class="q-block" role="group" aria-labelledby="q2lbl" style="margin-top:20px">
+      <!-- SORT ACTIVITY -->
+      <div class="q-block" role="group" aria-labelledby="sortlbl" style="margin-top:20px">
         <div class="q-stripe" aria-hidden="true"></div>
-        <p class="q-eye" aria-hidden="true">Question 02 of 02</p>
-        <p class="q-text" id="q2lbl">Based on the testimony, what is the primary mechanism by which the game produces learning?</p>
-        <p class="attempts-left" id="att2" aria-live="polite">You have 2 attempts.</p>
-        <div class="opts" id="opts2" role="radiogroup" aria-labelledby="q2lbl">
-          <button class="opt" onclick="answerQ(2,'A')"><span class="opt-l" aria-hidden="true">A</span><span>The game rewards correct answers more immediately than traditional methods</span></button>
-          <button class="opt" onclick="answerQ(2,'B')"><span class="opt-l" aria-hidden="true">B</span><span>The narrative framing reduces test anxiety by disguising review as entertainment</span></button>
-          <button class="opt" onclick="answerQ(2,'C')"><span class="opt-l" aria-hidden="true">C</span><span>Students must actively reason, collaborate, and honestly self-assess before the stakes are real</span></button>
-          <button class="opt" onclick="answerQ(2,'D')"><span class="opt-l" aria-hidden="true">D</span><span>The game covers more content per unit of time than conventional review</span></button>
+        <p class="q-eye" aria-hidden="true">Activity 02 of 02</p>
+        <p class="q-text" id="sortlbl">Sort the testimony</p>
+        <p class="sort-intro">The testimony above uses different kinds of language. Drag each phrase into the correct column, or tap a phrase then tap a column. Does it describe how students felt, or does it describe what students were actually doing cognitively?</p>
+
+        <div class="sort-bank" id="sortBank" aria-label="Phrases to sort">
+          <span class="sort-bank-head">Drag phrases into a column below, or tap a phrase then tap a column</span>
         </div>
-        <div class="feedback" id="q2fb" role="alert" aria-live="polite"></div>
+
+        <div class="sort-grid">
+          <div class="sort-col engage" id="colEngage" aria-label="Evidence of engagement">
+            <div class="sort-col-head">Evidence of Engagement<br><span style="font-weight:400;font-family:var(--f-body);font-size:.75rem;text-transform:none;letter-spacing:0;">How students felt</span></div>
+            <div class="sort-col-items" id="itemsEngage"></div>
+          </div>
+          <div class="sort-col think" id="colThink" aria-label="Evidence of thinking">
+            <div class="sort-col-head">Evidence of Thinking<br><span style="font-weight:400;font-family:var(--f-body);font-size:.75rem;text-transform:none;letter-spacing:0;">What they did cognitively</span></div>
+            <div class="sort-col-items" id="itemsThink"></div>
+          </div>
+        </div>
+
+        <button class="btn-check-sort" id="btnCheckSort" onclick="checkSort()" aria-label="Check my sorting">Check My Sorting</button>
+        <div class="feedback" id="sortFb" role="alert" aria-live="polite" style="margin-top:14px"></div>
       </div>
 
       <div class="stn-footer">
-        <p class="lock-hint" id="lock1" aria-live="polite">&#x1F512; Answer the question above to advance</p>
+        <p class="lock-hint" id="lock1" aria-live="polite">&#x1F512; Complete the sorting activity to advance</p>
         <button class="btn-adv" id="adv1" onclick="goNext(2)" aria-label="Advance to Station 3">Next Station</button>
       </div>
     </div>
@@ -465,16 +490,47 @@ canvas#reflCard { display: none; }
   <!-- STATION 3 -->
   <section class="station" id="st2" aria-labelledby="s2h">
     <div class="stn-body">
-      <p class="stn-eye" aria-hidden="true">Station 03, Design Protocol</p>
+      <p class="stn-eye" aria-hidden="true">Station 03 &mdash; Design Protocol</p>
       <h2 class="stn-title" id="s2h">Your <em>Design Brief</em></h2>
+
+      <p style="font-size:1rem;color:var(--ink2);line-height:1.7;margin-bottom:20px;">Educational escape rooms are effective precisely because they require higher-order thinking. That same complexity is what makes them easy to get wrong. A poorly designed room becomes a trivia game with a timer, and students know the difference.</p>
 
       <div class="doc-card">
         <div class="doc-hd">
-          <span class="doc-lbl">Framework Document, The 3-Decision Rule</span>
+          <span class="doc-lbl">Framework Document &mdash; The 3-Decision Rule</span>
           <span class="doc-tag ta">Apply Now</span>
         </div>
         <div class="doc-bd">
-          <p>Every escape room that works pedagogically was built by answering three questions <strong>before a single question was written.</strong> Most attempts fail, or become trivia games with a timer, because people start with the questions instead of the design.</p>
+          <p>The most common escape room design mistakes share a root cause: starting with the questions instead of the design. Before writing a single question, three decisions need to be made.</p>
+        </div>
+      </div>
+
+      <div class="accordion" id="accPitfalls">
+        <button class="acc-btn" aria-expanded="false" aria-controls="accPitfallspanel" onclick="toggleAcc('accPitfalls')">
+          <span class="acc-label"><span class="acc-icon" aria-hidden="true">&#x26A0;&#xFE0F;</span> Common Design Pitfalls</span>
+          <span class="acc-chevron" aria-hidden="true">&#x25BE;</span>
+        </button>
+        <div class="acc-panel" id="accPitfallspanel" role="region">
+          <div class="pitfall-card">
+            <div class="pt">Pitfall 1 &mdash; Confusing or illogical puzzle flow</div>
+            <p>Students should be able to follow the logic from one station to the next. If the progression feels arbitrary or requires reasoning that only makes sense to the designer, students disengage rather than problem-solve. Every station should have a clear reason for existing in that order.</p>
+          </div>
+          <div class="pitfall-card">
+            <div class="pt">Pitfall 2 &mdash; Questions that are too abstract</div>
+            <p>Questions that rely on interpretation rather than application create frustration instead of learning. If students cannot connect the question to a concept they recognize, the game stops feeling like review and starts feeling like a trick. Clarity in the question is not the same as making it easy.</p>
+          </div>
+          <div class="pitfall-card">
+            <div class="pt">Pitfall 3 &mdash; No clear progress indicators</div>
+            <p>Students need to know when they have solved something correctly and what comes next. Without clear feedback, the experience stalls. In a physical room this might be a sound or a door opening. In a classroom or online version it means explicit confirmation before advancing.</p>
+          </div>
+          <div class="pitfall-card">
+            <div class="pt">Pitfall 4 &mdash; Not enough playtesting</div>
+            <p>Designers know the answers, which makes them poor judges of their own puzzles. What feels obvious to the person who built it is often opaque to a first-time player. Running the room with at least one outside group before deploying it catches logic gaps that the designer cannot see.</p>
+          </div>
+          <div class="pitfall-card">
+            <div class="pt">Pitfall 5 &mdash; Every station uses the same format</div>
+            <p>Variety in how students interact with the material sustains engagement across the room. If every station is a multiple choice question with the same structure, the experience flattens out quickly. Different station formats also allow you to target different levels of Bloom's taxonomy across the same review session.</p>
+          </div>
         </div>
       </div>
 
@@ -495,19 +551,18 @@ canvas#reflCard { display: none; }
 
       <div class="q-block" role="group" aria-labelledby="s2flbl">
         <div class="q-stripe" aria-hidden="true"></div>
-        <p class="q-eye" aria-hidden="true">Your Brief, Field Exercise</p>
+        <p class="q-eye" aria-hidden="true">Your Brief &mdash; Field Exercise</p>
         <p class="q-text" id="s2flbl">Apply the 3 decisions to a course you actually teach. These answers become your reflection card.</p>
-
         <div class="field-group">
-          <label for="b1">Decision 1, The one concept your room will test</label>
+          <label for="b1">Decision 1 &mdash; The one concept your room will test</label>
           <textarea id="b1" placeholder="e.g. A single concept students consistently struggle with before your midterm or final" oninput="checkBrief()" aria-required="true"></textarea>
         </div>
         <div class="field-group">
-          <label for="b2">Decision 2, Your win condition (one sentence)</label>
+          <label for="b2">Decision 2 &mdash; Your win condition (one sentence)</label>
           <textarea id="b2" placeholder="e.g. Students are investigators who must solve the case before time runs out..." oninput="checkBrief()" style="min-height:76px" aria-required="true"></textarea>
         </div>
         <div class="field-group">
-          <label for="b3">Decision 3, Your in-person version (sketch 2 to 3 stations)</label>
+          <label for="b3">Decision 3 &mdash; Your in-person version (sketch 2&ndash;3 stations)</label>
           <textarea id="b3" placeholder="e.g. Station 1: Identify the problem. Station 2: Apply the concept. Station 3: Defend the answer." oninput="checkBrief()" aria-required="true"></textarea>
         </div>
       </div>
@@ -522,12 +577,12 @@ canvas#reflCard { display: none; }
   <!-- STATION 4 -->
   <section class="station" id="st3" aria-labelledby="s3h">
     <div class="stn-body">
-      <p class="stn-eye" aria-hidden="true">Station 04, Case Debrief</p>
+      <p class="stn-eye" aria-hidden="true">Station 04 &mdash; Case Debrief</p>
       <h2 class="stn-title" id="s3h">Close the <em>Case</em></h2>
 
       <div class="doc-card">
         <div class="doc-hd">
-          <span class="doc-lbl">Debrief Protocol, Before File Closure</span>
+          <span class="doc-lbl">Debrief Protocol &mdash; Before File Closure</span>
           <span class="doc-tag pu">Final Station</span>
         </div>
         <div class="doc-bd">
@@ -545,7 +600,7 @@ canvas#reflCard { display: none; }
 
       <div class="q-block" role="group" aria-labelledby="s3qlbl">
         <div class="q-stripe" aria-hidden="true"></div>
-        <p class="q-eye" aria-hidden="true">Final Reflection, This goes on your card</p>
+        <p class="q-eye" aria-hidden="true">Final Reflection &mdash; This goes on your card</p>
         <p class="q-text" id="s3qlbl">What is the hardest part of your design brief, and what would it actually take to build it?</p>
         <div class="field-group">
           <label for="refl">Your reflection <span class="sr-only">, minimum 40 characters</span></label>
@@ -576,18 +631,21 @@ canvas#reflCard { display: none; }
     <button class="btn-dl badge" onclick="dlBadge()">Download Badge</button>
     <button class="btn-dl card"  onclick="dlCard()">Download Reflection Card</button>
   </div>
+  <p id="ios-hint" style="display:none; font-family:var(--f-mono); font-size:.68rem; color:rgba(255,255,255,.5); text-align:center; max-width:360px; line-height:1.6; margin-bottom:24px; letter-spacing:.02em;">On iPhone or iPad, the image will open in a new tab. Press and hold it, then tap Save to Photos.</p>
   <div class="resources" aria-label="Resources">
-    <p class="res-head">Take These With You</p>
+    <p class="res-head">Take This With You</p>
     <div class="res-grid" role="list">
-      <div class="res-card" role="listitem"><span class="ri" aria-hidden="true">&#x1F4CB;</span><div class="rt">3-Decision Framework</div><div class="rd">One-page design brief template, discipline neutral</div></div>
-      <div class="res-card" role="listitem"><span class="ri" aria-hidden="true">&#x1F3AE;</span><div class="rt">Ghost Controller</div><div class="rd">Acct 2301 escape room, in-person and SCORM online versions</div></div>
-      <div class="res-card" role="listitem"><span class="ri" aria-hidden="true">&#x1F4D0;</span><div class="rt">Modality Design Notes</div><div class="rd">How in-person stations become async SCORM delivery</div></div>
-      <div class="res-card" role="listitem"><span class="ri" aria-hidden="true">&#x1F3C6;</span><div class="rt">Award-Winning Framework</div><div class="rd">UDL and QM redesign, AOFC Pinnacle of Excellence 2026</div></div>
+      <div class="res-card" role="listitem">
+        <span class="ri" aria-hidden="true">&#x1F4CB;</span>
+        <div class="rt">3-Decision Framework</div>
+        <div class="rd">Use the one-page design brief template (your session handout) to apply these three decisions to your own course</div>
+      </div>
     </div>
     <div class="contact-strip">
-      <p>The game series, course design framework, and this experience were built at Tyler Junior College. Want to talk about building your own?</p>
+      <p>Want to talk about building your own?</p>
       <a href="mailto:Jennifer.Coon@tjc.edu">Jennifer.Coon@tjc.edu</a>
-      <small>Jennifer Coon, CIA, CFE, Professor of Accounting, Tyler Junior College</small>
+      <small>Jennifer Coon, CIA, CFE &mdash; Professor of Accounting, Tyler Junior College</small>
+      <small style="margin-top:6px;">This experience was built with the help of Claude.ai</small>
     </div>
   </div>
 </div>
@@ -595,90 +653,304 @@ canvas#reflCard { display: none; }
 <canvas id="reflCard" width="1000" height="580" aria-hidden="true"></canvas>
 
 </main>
+
 <script>
-
 // STATE
-let agentName = 'Agent';
-let b1='', b2='', b3='', refl='';
-const CORRECT = {1:'B', 2:'C'};
-const attempts = {1:2, 2:2};
-const done = {1:false, 2:false};
+var agentName = 'Agent';
+var b1 = '', b2 = '', b3 = '', refl = '';
 
-const FB = {
-  1: {
-    B: 'Correct! Research on active learning and Brookfield\'s work on critical thinking both point to the same mechanism: students learn when they must reason socially, under pressure, before the grade. Publisher software confirms knowledge but does not build the capacity to think differently under pressure.',
-    hint: 'Think about the second icon card above. The escape room addresses something publisher assignments struggle to create. Which answer option relates to that gap?',
-    final: 'The correct answer is B. The escape room\'s main advantage is placing students under social pressure to reason through material before the exam, creating the conditions for genuine thinking rather than just recall.'
-  },
-  2: {
-    C: 'Correct! Look at the verbs in those statements. Students described evaluating, connecting, and self-assessing, not just feeling engaged. The social element, including administrators joining spontaneously, converted review into active thinking.',
-    hint: 'Look at the verbs in the student statements. What were students actually having to DO during the game, not just how they felt about it?',
-    final: 'The correct answer is C. Students must actively reason, collaborate, and honestly self-assess before the stakes are real. That is the mechanism the testimony keeps describing.'
-  }
+// Q1 feedback
+var FB1 = {
+  C: "Correct! The escape room works because students are inside a story, not completing an assignment. Narrative framing creates buy-in that a homework format does not. Students engage differently when the questions have a context and a reason to exist beyond a grade.",
+  A: "Not quite. Coverage and efficiency are real considerations, but they do not explain why students who completed every assignment still blanked on the exam. The field observation points to something deeper than how much material was covered.",
+  B: "Completion rate is a real benefit of gamification, but it does not explain the field observation above. Those students completed every publisher assignment and still blanked on the exam. The question is not whether students finish the work, it is what happens cognitively when they do it.",
+  D: "Immediate feedback is a feature of many publisher platforms as well, so it does not explain the difference. The field observation points to something about how students engage with the material, not just whether they are told if they are right or wrong.",
+  hint: "Think about the icon cards above. What does the escape room provide that a standard assignment format structurally cannot?",
+  final: "The correct answer is C. Narrative framing and immersion are what gamification research points to consistently. The story is not decoration, it is the mechanism."
 };
+
+// Q2 sort data
+var PHRASES = [
+  { id: 'p1', text: 'More interactive than publisher assignments', bucket: 'engage' },
+  { id: 'p2', text: 'Not discouraging', bucket: 'engage' },
+  { id: 'p3', text: 'Made accounting seem like a puzzle or game', bucket: 'engage' },
+  { id: 'p4', text: 'Awesome and engaging', bucket: 'engage' },
+  { id: 'p5', text: 'Careful evaluation and critical thinking before delivering any answers', bucket: 'think' },
+  { id: 'p6', text: 'Identified they needed to study more', bucket: 'think' },
+  { id: 'p7', text: 'Seeing how everything ties together', bucket: 'think' },
+  { id: 'p8', text: 'Connected the dots on the cycle', bucket: 'think' }
+];
+
+var sortState = {};
+var selectedPhrase = null;
+var dragId = null;
+var ghost = null;
+var ghostOffX = 0, ghostOffY = 0;
+var sortLocked = false;
+
+function initSort() {
+  PHRASES.forEach(function(p) { sortState[p.id] = null; });
+  var bank = document.getElementById('sortBank');
+  bank.querySelectorAll('.sort-phrase').forEach(function(el) { el.remove(); });
+
+  var shuffled = PHRASES.slice().sort(function() { return Math.random() - 0.5; });
+  shuffled.forEach(function(p) {
+    bank.appendChild(makeChip(p));
+  });
+}
+
+function makeChip(p) {
+  var btn = document.createElement('button');
+  btn.className = 'sort-phrase';
+  btn.id = 'phrase_' + p.id;
+  btn.textContent = p.text;
+  btn.setAttribute('draggable', 'true');
+  btn.setAttribute('aria-label', p.text);
+
+  // --- MOUSE drag ---
+  btn.addEventListener('dragstart', function(e) {
+    if (sortLocked) { e.preventDefault(); return; }
+    dragId = p.id;
+    setTimeout(function() { btn.classList.add('dragging'); }, 0);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', p.id);
+  });
+  btn.addEventListener('dragend', function() {
+    btn.classList.remove('dragging');
+    dragId = null;
+    clearDropHighlights();
+  });
+
+  // --- TOUCH drag ---
+  btn.addEventListener('touchstart', function(e) {
+    if (sortLocked) return;
+    var touch = e.touches[0];
+    dragId = p.id;
+    var rect = btn.getBoundingClientRect();
+    ghostOffX = touch.clientX - rect.left;
+    ghostOffY = touch.clientY - rect.top;
+    ghost = document.createElement('div');
+    ghost.className = 'sort-phrase drag-ghost';
+    ghost.textContent = p.text;
+    ghost.style.width = rect.width + 'px';
+    ghost.style.left = (touch.clientX - ghostOffX) + 'px';
+    ghost.style.top  = (touch.clientY - ghostOffY) + 'px';
+    document.body.appendChild(ghost);
+    btn.classList.add('dragging');
+  }, { passive: true });
+
+  btn.addEventListener('touchmove', function(e) {
+    if (!ghost) return;
+    e.preventDefault();
+    var touch = e.touches[0];
+    ghost.style.left = (touch.clientX - ghostOffX) + 'px';
+    ghost.style.top  = (touch.clientY - ghostOffY) + 'px';
+    clearDropHighlights();
+    var el = document.elementFromPoint(touch.clientX, touch.clientY);
+    var target = el ? el.closest('#colEngage, #colThink, #sortBank') : null;
+    if (target) target.classList.add('drag-over');
+  }, { passive: false });
+
+  btn.addEventListener('touchend', function(e) {
+    if (!ghost || !dragId) return;
+    var touch = e.changedTouches[0];
+    var el = document.elementFromPoint(touch.clientX, touch.clientY);
+    var target = el ? el.closest('#colEngage, #colThink, #sortBank') : null;
+    document.body.removeChild(ghost);
+    ghost = null;
+    btn.classList.remove('dragging');
+    clearDropHighlights();
+    var id = dragId; dragId = null;
+    if (target && target.id === 'colEngage') { dropInto(id, 'engage'); }
+    else if (target && target.id === 'colThink') { dropInto(id, 'think'); }
+    else if (target && target.id === 'sortBank') { returnToBank(id); }
+    // else: dropped nowhere, stays in place
+  });
+
+  // --- TAP to select / place fallback ---
+  btn.addEventListener('click', function(e) {
+    if (sortLocked) return;
+    // if this is a drag end, ignore
+    if (btn.classList.contains('dragging')) return;
+    if (selectedPhrase === p.id) {
+      // deselect
+      btn.style.outline = '';
+      selectedPhrase = null;
+    } else {
+      if (selectedPhrase) {
+        var prev = document.getElementById('phrase_' + selectedPhrase);
+        if (prev) prev.style.outline = '';
+      }
+      selectedPhrase = p.id;
+      btn.style.outline = '3px solid var(--teal)';
+    }
+  });
+
+  return btn;
+}
+
+function dropInto(id, bucket) {
+  var btn = document.getElementById('phrase_' + id);
+  sortState[id] = bucket;
+  btn.className = 'sort-phrase placed-' + bucket;
+  btn.style.outline = '';
+  document.getElementById('items' + (bucket === 'engage' ? 'Engage' : 'Think')).appendChild(btn);
+  if (selectedPhrase === id) selectedPhrase = null;
+  updateCheckBtn();
+}
+
+function returnToBank(id) {
+  var btn = document.getElementById('phrase_' + id);
+  sortState[id] = null;
+  btn.className = 'sort-phrase';
+  btn.style.outline = '';
+  document.getElementById('sortBank').appendChild(btn);
+  if (selectedPhrase === id) selectedPhrase = null;
+  updateCheckBtn();
+}
+
+function clearDropHighlights() {
+  ['colEngage','colThink','sortBank'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('drag-over');
+  });
+}
+
+function setupDropZone(elId, bucket) {
+  var el = document.getElementById(elId);
+  el.addEventListener('dragover', function(e) {
+    e.preventDefault(); e.dataTransfer.dropEffect = 'move';
+    el.classList.add('drag-over');
+  });
+  el.addEventListener('dragleave', function(e) {
+    if (!el.contains(e.relatedTarget)) el.classList.remove('drag-over');
+  });
+  el.addEventListener('drop', function(e) {
+    e.preventDefault(); el.classList.remove('drag-over');
+    var id = e.dataTransfer.getData('text/plain');
+    if (!id) return;
+    if (bucket === 'bank') returnToBank(id);
+    else dropInto(id, bucket);
+  });
+  // tap-to-place: clicking the column places the selected phrase
+  el.addEventListener('click', function(e) {
+    if (!selectedPhrase) return;
+    if (e.target.classList.contains('sort-phrase')) return;
+    if (bucket === 'bank') returnToBank(selectedPhrase);
+    else dropInto(selectedPhrase, bucket);
+  });
+}
+
+function updateCheckBtn() {
+  var allPlaced = PHRASES.every(function(p) { return sortState[p.id] !== null; });
+  var btn = document.getElementById('btnCheckSort');
+  if (allPlaced) btn.classList.add('on');
+  else btn.classList.remove('on');
+}
+
+function checkSort() {
+  var correct = true;
+  PHRASES.forEach(function(p) {
+    var btn = document.getElementById('phrase_' + p.id);
+    if (sortState[p.id] === p.bucket) {
+      btn.className = 'sort-phrase correct-final';
+    } else {
+      btn.className = 'sort-phrase wrong-final';
+      correct = false;
+    }
+  });
+  var fb = document.getElementById('sortFb');
+  if (correct) {
+    sortLocked = true;
+    fb.textContent = "Correct. Both columns matter, but they are not the same thing. Engagement gets students in the room. Thinking is what they take to the exam. The testimony shows both, which is what makes the escape room worth the design time.";
+    fb.className = 'feedback show ok';
+    document.getElementById('btnCheckSort').disabled = true;
+    setTimeout(function() { unlock(1); }, 500);
+  } else {
+    fb.textContent = "Not quite. Look at the verbs. Feeling engaged describes an emotional state. Thinking describes a cognitive action. The phrases that tell you what students were actually doing with the material belong in the thinking column. Drag or tap any phrase to move it and try again.";
+    fb.className = 'feedback show miss';
+    // re-enable wrong ones for retry
+    PHRASES.forEach(function(p) {
+      var btn = document.getElementById('phrase_' + p.id);
+      if (sortState[p.id] !== p.bucket) {
+        btn.className = 'sort-phrase placed-' + sortState[p.id];
+      }
+    });
+  }
+}
+
+// Column click handlers
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('agentName').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') startGame();
+  });
+  setupDropZone('colEngage', 'engage');
+  setupDropZone('colThink', 'think');
+  setupDropZone('sortBank', 'bank');
+  initSort();
+});
 
 // ACCORDION
 function toggleAcc(id) {
-  const btn = document.querySelector('#' + id + ' .acc-btn');
-  const panel = document.getElementById(id + 'panel');
-  const open = btn.getAttribute('aria-expanded') === 'true';
+  var btn = document.querySelector('#' + id + ' .acc-btn');
+  var panel = document.getElementById(id + 'panel');
+  var open = btn.getAttribute('aria-expanded') === 'true';
   btn.setAttribute('aria-expanded', open ? 'false' : 'true');
   panel.classList.toggle('open', !open);
 }
 
-// COVER
-document.getElementById('agentName').addEventListener('keydown', e => { if (e.key === 'Enter') startGame(); });
 function startGame() {
   agentName = document.getElementById('agentName').value.trim() || 'Agent';
   document.getElementById('screen-cover').classList.remove('active');
   document.getElementById('screen-game').classList.add('active');
-  window.scrollTo({top:0, behavior:'instant'});
+  window.scrollTo({ top: 0, behavior: 'instant' });
 }
 
-// ANSWER
-function answerQ(qNum, choice) {
-  if (done[qNum]) return;
-  const correct = CORRECT[qNum];
-  const isRight = choice === correct;
-  const attEl = document.getElementById('att' + qNum);
-  const fbEl  = document.getElementById('q' + qNum + 'fb');
-  const opts  = document.querySelectorAll('#opts' + qNum + ' .opt');
+// Q1 ANSWER
+var q1done = false;
+var q1attempts = 2;
 
-  if (isRight) {
-    done[qNum] = true;
-    opts.forEach(btn => {
-      const l = btn.querySelector('.opt-l').textContent.trim();
-      btn.disabled = true;
-      if (l === correct) btn.classList.add('correct');
-      else btn.classList.add('dimmed');
-    });
-    fbEl.textContent = FB[qNum][correct];
-    fbEl.className = 'feedback show ok';
-    attEl.textContent = 'Correct!';
-    setTimeout(() => unlock(qNum - 1), 400);
-  } else {
-    attempts[qNum]--;
-    // Mark chosen as wrong
-    opts.forEach(btn => {
-      const l = btn.querySelector('.opt-l').textContent.trim();
-      if (l === choice) { btn.classList.add('wrong'); btn.disabled = true; }
-    });
-    if (attempts[qNum] > 0) {
-      attEl.textContent = 'Not quite, you have ' + attempts[qNum] + ' attempt' + (attempts[qNum] === 1 ? '' : 's') + ' remaining.';
-      fbEl.textContent = FB[qNum].hint;
-      fbEl.className = 'feedback show miss';
-    } else {
-      done[qNum] = true;
-      opts.forEach(btn => {
-        const l = btn.querySelector('.opt-l').textContent.trim();
+function answerQ(qNum, choice) {
+  if (qNum === 1) {
+    if (q1done) return;
+    var attEl = document.getElementById('att1');
+    var fbEl  = document.getElementById('q1fb');
+    var opts  = document.querySelectorAll('#opts1 .opt');
+
+    if (choice === 'C') {
+      q1done = true;
+      opts.forEach(function(btn) {
+        var l = btn.querySelector('.opt-l').textContent.trim();
         btn.disabled = true;
-        if (l === correct) btn.classList.add('correct');
-        else if (!btn.classList.contains('wrong')) btn.classList.add('dimmed');
+        if (l === 'C') btn.classList.add('correct');
+        else btn.classList.add('dimmed');
       });
-      attEl.textContent = 'No more attempts.';
-      fbEl.textContent = FB[qNum].final;
+      fbEl.textContent = FB1.C;
+      fbEl.className = 'feedback show ok';
+      attEl.textContent = 'Correct!';
+      setTimeout(function() { unlock(0); }, 400);
+    } else {
+      q1attempts--;
+      opts.forEach(function(btn) {
+        var l = btn.querySelector('.opt-l').textContent.trim();
+        if (l === choice) { btn.classList.add('wrong'); btn.disabled = true; }
+      });
+      fbEl.textContent = FB1[choice] || FB1.hint;
       fbEl.className = 'feedback show miss';
-      setTimeout(() => unlock(qNum - 1), 1200);
+      if (q1attempts <= 0) {
+        q1done = true;
+        opts.forEach(function(btn) {
+          var l = btn.querySelector('.opt-l').textContent.trim();
+          btn.disabled = true;
+          if (l === 'C') btn.classList.add('correct');
+          else if (!btn.classList.contains('wrong')) btn.classList.add('dimmed');
+        });
+        attEl.textContent = 'No more attempts.';
+        fbEl.textContent = FB1.final;
+        setTimeout(function() { unlock(0); }, 1200);
+      } else {
+        attEl.textContent = 'Not quite, you have ' + q1attempts + ' attempt' + (q1attempts === 1 ? '' : 's') + ' remaining.';
+      }
     }
   }
 }
@@ -692,8 +964,8 @@ function checkBrief() {
 
 function checkRefl() {
   refl = document.getElementById('refl').value.trim();
-  const cnt = document.getElementById('refl-count');
-  const fb  = document.getElementById('refl-fb');
+  var cnt = document.getElementById('refl-count');
+  var fb  = document.getElementById('refl-fb');
   cnt.textContent = refl.length + ' / 40 characters minimum';
   if (refl.length >= 40) {
     unlock(3);
@@ -702,203 +974,203 @@ function checkRefl() {
   } else if (refl.length > 0) {
     fb.textContent = (40 - refl.length) + ' more character' + (40 - refl.length !== 1 ? 's' : '') + ' needed.';
     fb.className = 'feedback show miss';
-  } else { fb.className = 'feedback'; }
+  } else {
+    fb.className = 'feedback';
+  }
 }
 
 function unlock(idx) {
-  const btn = document.getElementById('adv' + idx);
-  const lk  = document.getElementById('lock' + idx);
+  var btn = document.getElementById('adv' + idx);
+  var lk  = document.getElementById('lock' + idx);
   btn.classList.add('on');
-  if (lk) { lk.classList.add('hidden'); lk.setAttribute('aria-hidden','true'); }
+  if (lk) { lk.classList.add('hidden'); lk.setAttribute('aria-hidden', 'true'); }
 }
 
 function goNext(nextIdx) {
-  b1 = document.getElementById('b1')?.value.trim() || b1;
-  b2 = document.getElementById('b2')?.value.trim() || b2;
-  b3 = document.getElementById('b3')?.value.trim() || b3;
-  refl = document.getElementById('refl')?.value.trim() || refl;
+  var b1el = document.getElementById('b1');
+  var b2el = document.getElementById('b2');
+  var b3el = document.getElementById('b3');
+  var reel = document.getElementById('refl');
+  if (b1el) b1 = b1el.value.trim() || b1;
+  if (b2el) b2 = b2el.value.trim() || b2;
+  if (b3el) b3 = b3el.value.trim() || b3;
+  if (reel) refl = reel.value.trim() || refl;
 
-  document.querySelectorAll('.station').forEach(s => s.classList.remove('active'));
-  for (let i = 0; i < 4; i++) {
-    const p = document.getElementById('pip' + i);
-    p.classList.remove('done','now');
-    if (i < nextIdx)       { p.classList.add('done'); p.setAttribute('aria-label','Station '+(i+1)+', complete'); }
-    else if (i === nextIdx){ p.classList.add('now');  p.setAttribute('aria-label','Station '+(i+1)+', current'); }
-    else p.setAttribute('aria-label','Station '+(i+1));
+  document.querySelectorAll('.station').forEach(function(s) { s.classList.remove('active'); });
+  for (var i = 0; i < 4; i++) {
+    var p = document.getElementById('pip' + i);
+    p.classList.remove('done', 'now');
+    if (i < nextIdx)        { p.classList.add('done'); p.setAttribute('aria-label', 'Station ' + (i+1) + ', complete'); }
+    else if (i === nextIdx) { p.classList.add('now');  p.setAttribute('aria-label', 'Station ' + (i+1) + ', current'); }
+    else p.setAttribute('aria-label', 'Station ' + (i+1));
   }
-  document.getElementById('hudLbl').textContent = 'Station ' + (nextIdx+1) + ' / 4';
-  const next = document.getElementById('st' + nextIdx);
+  document.getElementById('hudLbl').textContent = 'Station ' + (nextIdx + 1) + ' / 4';
+  var next = document.getElementById('st' + nextIdx);
   next.classList.add('active');
-  const h = next.querySelector('h2');
-  if (h) { h.setAttribute('tabindex','-1'); h.focus(); }
-  window.scrollTo({top:0, behavior:'smooth'});
+  var h = next.querySelector('h2');
+  if (h) { h.setAttribute('tabindex', '-1'); h.focus(); }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function showDone() {
-  b1   = document.getElementById('b1')?.value.trim()   || b1;
-  b2   = document.getElementById('b2')?.value.trim()   || b2;
-  b3   = document.getElementById('b3')?.value.trim()   || b3;
-  refl = document.getElementById('refl')?.value.trim() || refl;
+  var b1el = document.getElementById('b1');
+  var b2el = document.getElementById('b2');
+  var b3el = document.getElementById('b3');
+  var reel = document.getElementById('refl');
+  if (b1el) b1 = b1el.value.trim() || b1;
+  if (b2el) b2 = b2el.value.trim() || b2;
+  if (b3el) b3 = b3el.value.trim() || b3;
+  if (reel) refl = reel.value.trim() || refl;
   document.getElementById('screen-game').classList.remove('active');
   document.getElementById('screen-complete').classList.add('active');
   drawBadge();
-  window.scrollTo({top:0, behavior:'smooth'});
+  // Show iOS hint if on iPhone or iPad
+  var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+  if (isIOS) document.getElementById('ios-hint').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // BADGE
 function drawBadge() {
-  const c = document.getElementById('badgeCanvas');
-  const x = c.getContext('2d');
-  const W=200, H=200, cx=100, cy=100;
-  const g = x.createRadialGradient(cx,cy,40,cx,cy,100);
-  g.addColorStop(0,'#012a55'); g.addColorStop(1,'#0d3d6b');
+  var c = document.getElementById('badgeCanvas');
+  var x = c.getContext('2d');
+  var cx = 100, cy = 100;
+  var g = x.createRadialGradient(cx, cy, 40, cx, cy, 100);
+  g.addColorStop(0, '#012a55'); g.addColorStop(1, '#0d3d6b');
   x.fillStyle = g;
-  x.beginPath(); x.arc(cx,cy,98,0,Math.PI*2); x.fill();
-  // NISOD stripe arcs
-  [{c:'#2a8fa8',r:88},{c:'#7c70a0',r:82},{c:'#cbb29e',r:76}].forEach(({c,r}) => {
-    x.strokeStyle=c; x.lineWidth=4;
-    x.beginPath(); x.arc(cx,cy,r,-Math.PI*.68,-Math.PI*.1); x.stroke();
+  x.beginPath(); x.arc(cx, cy, 98, 0, Math.PI * 2); x.fill();
+  [{c:'#2a8fa8',r:88},{c:'#7c70a0',r:82},{c:'#cbb29e',r:76}].forEach(function(o) {
+    x.strokeStyle = o.c; x.lineWidth = 4;
+    x.beginPath(); x.arc(cx, cy, o.r, -Math.PI * .68, -Math.PI * .1); x.stroke();
   });
-  x.fillStyle='#1a5490';
-  x.beginPath(); x.arc(cx,cy,70,0,Math.PI*2); x.fill();
-  x.strokeStyle='#f0c040'; x.lineWidth=3;
-  x.beginPath(); x.arc(cx,cy,70,0,Math.PI*2); x.stroke();
-  x.font='38px serif'; x.textAlign='center'; x.textBaseline='middle';
-  x.fillText('&#x1F50E;'.replace('&#x1F50E;','\uD83D\uDD0E'), cx, cy-18);
-  // Magnifier emoji fallback
-  x.font='36px serif'; x.fillText('\uD83D\uDD0E', cx, cy-18);
-  x.font="bold 13px Georgia, serif"; x.fillStyle='#f0c040';
-  x.textBaseline='alphabetic'; x.fillText('THE ARCHITECT', cx, cy+20);
-  const nm = agentName.length>18 ? agentName.slice(0,16)+'...' : agentName;
-  x.font="11px 'Courier New', monospace"; x.fillStyle='rgba(255,255,255,.75)';
-  x.fillText(nm, cx, cy+36);
-  x.font="9px 'Courier New', monospace"; x.fillStyle='rgba(255,255,255,.4)';
-  x.fillText('NISOD 2026', cx, cy+52);
-  x.strokeStyle='rgba(255,255,255,.12)'; x.lineWidth=2;
-  x.beginPath(); x.arc(cx,cy,97,0,Math.PI*2); x.stroke();
+  x.fillStyle = '#1a5490';
+  x.beginPath(); x.arc(cx, cy, 70, 0, Math.PI * 2); x.fill();
+  x.strokeStyle = '#f0c040'; x.lineWidth = 3;
+  x.beginPath(); x.arc(cx, cy, 70, 0, Math.PI * 2); x.stroke();
+  x.font = '36px serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.fillText('\uD83D\uDD0E', cx, cy - 18);
+  x.font = 'bold 13px Georgia, serif'; x.fillStyle = '#f0c040';
+  x.textBaseline = 'alphabetic'; x.fillText('THE ARCHITECT', cx, cy + 20);
+  var nm = agentName.length > 18 ? agentName.slice(0, 16) + '...' : agentName;
+  x.font = "11px 'Courier New', monospace"; x.fillStyle = 'rgba(255,255,255,.75)';
+  x.fillText(nm, cx, cy + 36);
+  x.font = "9px 'Courier New', monospace"; x.fillStyle = 'rgba(255,255,255,.4)';
+  x.fillText('NISOD 2026', cx, cy + 52);
+  x.strokeStyle = 'rgba(255,255,255,.12)'; x.lineWidth = 2;
+  x.beginPath(); x.arc(cx, cy, 97, 0, Math.PI * 2); x.stroke();
 }
 
 function dlBadge() {
-  const c = document.getElementById('badgeCanvas');
-  const a = document.createElement('a');
-  const s = agentName.replace(/[^a-z0-9]/gi,'_').toLowerCase() || 'agent';
+  var c = document.getElementById('badgeCanvas');
+  var a = document.createElement('a');
+  var s = agentName.replace(/[^a-z0-9]/gi, '_').toLowerCase() || 'agent';
   a.download = 'nisod2026_badge_' + s + '.png';
   a.href = c.toDataURL('image/png'); a.click();
 }
 
 // REFLECTION CARD
 function dlCard() {
-  const c   = document.getElementById('reflCard');
-  const ctx = c.getContext('2d');
-  const W = 1000, H = 580;
+  var c   = document.getElementById('reflCard');
+  var ctx = c.getContext('2d');
+  var W = 1000, H = 580;
 
-  // Background
-  const bg = ctx.createLinearGradient(0,0,W,H);
-  bg.addColorStop(0,'#faf7f4'); bg.addColorStop(1,'#f0edf8');
-  ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
+  var bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#faf7f4'); bg.addColorStop(1, '#f0edf8');
+  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
 
-  // Top stripe
-  const str = ctx.createLinearGradient(0,0,W,0);
-  str.addColorStop(0,'#2a8fa8'); str.addColorStop(.5,'#7c70a0'); str.addColorStop(1,'#cbb29e');
-  ctx.fillStyle = str; ctx.fillRect(0,0,W,7);
+  var str = ctx.createLinearGradient(0, 0, W, 0);
+  str.addColorStop(0, '#2a8fa8'); str.addColorStop(.5, '#7c70a0'); str.addColorStop(1, '#cbb29e');
+  ctx.fillStyle = str; ctx.fillRect(0, 0, W, 7);
 
-  // Navy left panel
-  ctx.fillStyle = '#012a55'; ctx.fillRect(0,7,230,H-7);
+  ctx.fillStyle = '#012a55'; ctx.fillRect(0, 7, 230, H - 7);
+  ctx.drawImage(document.getElementById('badgeCanvas'), 15, 25, 200, 200);
 
-  // Draw badge on left
-  ctx.drawImage(document.getElementById('badgeCanvas'), 15,25,200,200);
-
-  // Agent name
-  ctx.font = "bold 18px Georgia, serif";
-  ctx.fillStyle = '#f0c040'; ctx.textAlign='center'; ctx.textBaseline='top';
-  const dn = agentName.length>22 ? agentName.slice(0,20)+'...' : agentName;
+  ctx.font = 'bold 18px Georgia, serif';
+  ctx.fillStyle = '#f0c040'; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+  var dn = agentName.length > 22 ? agentName.slice(0, 20) + '...' : agentName;
   ctx.fillText(dn, 115, 238);
-  ctx.font="11px 'Courier New', monospace"; ctx.fillStyle='rgba(255,255,255,.5)';
+  ctx.font = "11px 'Courier New', monospace"; ctx.fillStyle = 'rgba(255,255,255,.5)';
   ctx.fillText('THE ARCHITECT', 115, 260);
   ctx.fillText('NISOD 2026', 115, 276);
 
-  // NISOD dots
-  [{c:'#2a8fa8'},{c:'#7c70a0'},{c:'#cbb29e'}].forEach(({c},i)=>{
-    ctx.fillStyle=c; ctx.beginPath();
-    ctx.arc(80+i*30, H-28, 9, 0, Math.PI*2); ctx.fill();
+  [{c:'#2a8fa8'},{c:'#7c70a0'},{c:'#cbb29e'}].forEach(function(o, i) {
+    ctx.fillStyle = o.c; ctx.beginPath();
+    ctx.arc(80 + i * 30, H - 28, 9, 0, Math.PI * 2); ctx.fill();
   });
-  ctx.font="bold 11px 'Courier New', monospace";
-  ctx.fillStyle='rgba(255,255,255,.6)';
-  ctx.textAlign='center'; ctx.textBaseline='top';
+  ctx.font = "bold 11px 'Courier New', monospace";
+  ctx.fillStyle = 'rgba(255,255,255,.6)';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'top';
   ctx.fillText('Jennifer.Coon@tjc.edu', 115, 310);
-  ctx.font="10px 'Courier New', monospace";
-  ctx.fillStyle='rgba(255,255,255,.35)';
+  ctx.font = "10px 'Courier New', monospace";
+  ctx.fillStyle = 'rgba(255,255,255,.35)';
   ctx.fillText('Tyler Junior College', 115, 330);
   ctx.fillText('NISOD 2026', 115, 347);
+
   finishCard(ctx, W, H, c);
 }
 
 function finishCard(ctx, W, H, canvas) {
-  const X=256, PAD=28, CW=W-X-PAD;
+  var X = 256, PAD = 28, CW = W - X - PAD;
 
-  // Title
-  ctx.fillStyle='#012a55'; ctx.font="bold 26px Georgia, serif";
-  ctx.textAlign='left'; ctx.textBaseline='top';
+  ctx.fillStyle = '#012a55'; ctx.font = 'bold 26px Georgia, serif';
+  ctx.textAlign = 'left'; ctx.textBaseline = 'top';
   ctx.fillText('My Game Design Brief', X, 28);
 
-  ctx.font="10px 'Courier New', monospace"; ctx.fillStyle='#7c70a0';
+  ctx.font = "10px 'Courier New', monospace"; ctx.fillStyle = '#7c70a0';
   ctx.fillText('NISOD 2026  \u00B7  From Review Sheets to Crime Scene  \u00B7  Jennifer Coon, CIA, CFE', X, 62);
 
-  // Divider
-  ctx.strokeStyle='#d8e2ec'; ctx.lineWidth=1.5;
-  ctx.beginPath(); ctx.moveTo(X,80); ctx.lineTo(W-PAD,80); ctx.stroke();
+  ctx.strokeStyle = '#d8e2ec'; ctx.lineWidth = 1.5;
+  ctx.beginPath(); ctx.moveTo(X, 80); ctx.lineTo(W - PAD, 80); ctx.stroke();
 
   function pill(label, color, y) {
     ctx.fillStyle = color;
     rrect(ctx, X, y, 172, 22, 4); ctx.fill();
-    ctx.font="bold 10px 'Courier New', monospace";
-    ctx.fillStyle='#fff'; ctx.textAlign='left'; ctx.textBaseline='middle';
-    ctx.fillText(label, X+10, y+11);
+    ctx.font = "bold 10px 'Courier New', monospace";
+    ctx.fillStyle = '#fff'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    ctx.fillText(label, X + 10, y + 11);
   }
 
   function section(label, val, y, color) {
     pill(label, color, y);
-    ctx.fillStyle='#1a2535'; ctx.font="14px Georgia, serif"; ctx.textBaseline='top';
-    const lines = wrap(ctx, val || '(not completed)', CW, 14);
-    lines.slice(0,3).forEach((l,i) => ctx.fillText(l, X, y+28+i*20));
-    return y + 28 + Math.min(lines.length,3)*20 + 14;
+    ctx.fillStyle = '#1a2535'; ctx.font = '14px Georgia, serif'; ctx.textBaseline = 'top';
+    var lines = wrapText(ctx, val || '(not completed)', CW, 14);
+    lines.slice(0, 3).forEach(function(l, i) { ctx.fillText(l, X, y + 28 + i * 20); });
+    return y + 28 + Math.min(lines.length, 3) * 20 + 14;
   }
 
-  let y = 92;
-  y = section('DECISION 1, CONCEPT', b1, y, '#2a8fa8');
-  y = section('DECISION 2, WIN CONDITION', b2, y, '#7c70a0');
-  y = section('DECISION 3, IN-PERSON DESIGN', b3, y, '#a07040');
+  var y = 92;
+  y = section('DECISION 1 \u2014 CONCEPT', b1, y, '#2a8fa8');
+  y = section('DECISION 2 \u2014 WIN CONDITION', b2, y, '#7c70a0');
+  y = section('DECISION 3 \u2014 IN-PERSON DESIGN', b3, y, '#a07040');
 
-  // Divider
-  ctx.strokeStyle='#d8e2ec'; ctx.lineWidth=1;
-  ctx.beginPath(); ctx.moveTo(X,y+4); ctx.lineTo(W-PAD,y+4); ctx.stroke();
+  ctx.strokeStyle = '#d8e2ec'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(X, y + 4); ctx.lineTo(W - PAD, y + 4); ctx.stroke();
   y += 16;
 
-  pill('REFLECTION, WHAT WOULD IT TAKE?', '#012a55', y);
+  pill('REFLECTION \u2014 WHAT WOULD IT TAKE?', '#012a55', y);
   y += 28;
-  ctx.fillStyle='#2d3f55'; ctx.font="13px Georgia, serif"; ctx.textBaseline='top';
-  wrap(ctx, refl || '(not completed)', CW, 13).slice(0,4).forEach((l,i) => ctx.fillText(l, X, y+i*19));
+  ctx.fillStyle = '#2d3f55'; ctx.font = '13px Georgia, serif'; ctx.textBaseline = 'top';
+  wrapText(ctx, refl || '(not completed)', CW, 13).slice(0, 4).forEach(function(l, i) {
+    ctx.fillText(l, X, y + i * 19);
+  });
 
-  // Footer
-  ctx.fillStyle='#f0edf8'; ctx.fillRect(X, H-30, W-X, 30);
-  ctx.font="10px 'Courier New', monospace"; ctx.fillStyle='#9a8aaa';
-  ctx.textBaseline='middle';
-  ctx.fillText('Jennifer.Coon@tjc.edu  \u00B7  Tyler Junior College  \u00B7  NISOD 2026', X, H-15);
+  ctx.fillStyle = '#f0edf8'; ctx.fillRect(X, H - 30, W - X, 30);
+  ctx.font = "10px 'Courier New', monospace"; ctx.fillStyle = '#9a8aaa';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('Jennifer.Coon@tjc.edu  \u00B7  Tyler Junior College  \u00B7  NISOD 2026', X, H - 15);
 
-  // Download
-  const a = document.createElement('a');
-  const s = agentName.replace(/[^a-z0-9]/gi,'_').toLowerCase() || 'agent';
+  var a = document.createElement('a');
+  var s = agentName.replace(/[^a-z0-9]/gi, '_').toLowerCase() || 'agent';
   a.download = 'nisod2026_reflection_card_' + s + '.png';
   a.href = canvas.toDataURL('image/png'); a.click();
 }
 
-function wrap(ctx, text, maxW, size) {
-  ctx.font = size + "px Georgia, serif";
-  const words = text.split(' '), lines = [];
-  let line = '';
-  words.forEach(w => {
-    const t = line ? line+' '+w : w;
-    if (ctx.measureText(t).width > maxW && line) { lines.push(line); line=w; }
+function wrapText(ctx, text, maxW, size) {
+  ctx.font = size + 'px Georgia, serif';
+  var words = text.split(' '), lines = [], line = '';
+  words.forEach(function(w) {
+    var t = line ? line + ' ' + w : w;
+    if (ctx.measureText(t).width > maxW && line) { lines.push(line); line = w; }
     else line = t;
   });
   if (line) lines.push(line);
@@ -907,10 +1179,15 @@ function wrap(ctx, text, maxW, size) {
 
 function rrect(ctx, x, y, w, h, r) {
   ctx.beginPath();
-  ctx.moveTo(x+r,y); ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
-  ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
-  ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
-  ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h);
+  ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
   ctx.closePath();
 }
 </script>
