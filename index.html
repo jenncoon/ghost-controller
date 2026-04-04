@@ -1242,7 +1242,10 @@ function dlBadge() {
   var a = document.createElement('a');
   var s = agentName.replace(/[^a-z0-9]/gi, '_').toLowerCase() || 'agent';
   a.download = 'nisod2026_badge_' + s + '.png';
-  a.href = c.toDataURL('image/png'); a.click();
+  a.href = c.toDataURL('image/png');
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 // ── REFLECTION CARD ──────────────────────────────────────
@@ -1364,7 +1367,10 @@ function finishCard(ctx, W, H, canvas, S) {
   var a = document.createElement('a');
   var s = agentName.replace(/[^a-z0-9]/gi, '_').toLowerCase() || 'agent';
   a.download = 'nisod2026_reflection_card_' + s + '.png';
-  a.href = canvas.toDataURL('image/png'); a.click();
+  a.href = canvas.toDataURL('image/png');
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
 }
 
 function wrapText(ctx, text, maxW, size) {
